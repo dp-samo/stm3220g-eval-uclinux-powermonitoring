@@ -1,0 +1,15 @@
+#
+# Video configuration
+#
+
+menu "Doceapower features"
+
+config DOCEAPOWER_CPUMEM_USAGE
+	bool "CPU/MEM usage kernel printing"
+        default y
+
+config DOCEAPOWER_LCD_FRAMEBUFFER_DRIVER
+        bool "STM32 LCD framebuffer driver"
+        default n
+
+endmenu

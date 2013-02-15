@@ -1,0 +1,864 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE target SYSTEM "gdb-target.dtd">
+
+<!-- Copyright (C) 2007, 2008 Freescale Semiconductor, Inc. -->
+
+<!-- *********************************************************************** -->
+<!-- *                                                                     * -->
+<!-- * GDB's 8578 machine description. (For Freeescale internal use only). * -->
+<!-- *                                                                     * -->
+<!-- *********************************************************************** -->
+
+<!-- $Id: e500mc.xml,v 1.14 2007/11/26 18:02:56 b07584 Exp $ -->
+
+<target version="1.0">
+
+ <!-- Declare ourselves as a member of the PowerPC family -->
+ <architecture>powerpc:e500mc</architecture>
+
+ <!-- By Section F.4.4 in the GDB 6.7 manual, 
+      we need the following feature. -->
+ <feature name="org.gnu.gdb.power.core">
+
+  <!-- Preserve register numbering. -->
+
+  <!-- General Purpose Registers: [r0, r31] -->
+  <reg name="r0"  regnum="0"  bitsize="32"/>
+  <reg name="r1"  regnum="1"  bitsize="32"/>
+  <reg name="r2"  regnum="2"  bitsize="32"/>
+  <reg name="r3"  regnum="3"  bitsize="32"/>
+  <reg name="r4"  regnum="4"  bitsize="32"/>
+  <reg name="r5"  regnum="5"  bitsize="32"/>
+  <reg name="r6"  regnum="6"  bitsize="32"/>
+  <reg name="r7"  regnum="7"  bitsize="32"/>
+  <reg name="r8"  regnum="8"  bitsize="32"/>
+  <reg name="r9"  regnum="9"  bitsize="32"/>
+  <reg name="r10" regnum="10" bitsize="32"/>
+  <reg name="r11" regnum="11" bitsize="32"/>
+  <reg name="r12" regnum="12" bitsize="32"/>
+  <reg name="r13" regnum="13" bitsize="32"/>
+  <reg name="r14" regnum="14" bitsize="32"/>
+  <reg name="r15" regnum="15" bitsize="32"/>
+  <reg name="r16" regnum="16" bitsize="32"/>
+  <reg name="r17" regnum="17" bitsize="32"/>
+  <reg name="r18" regnum="18" bitsize="32"/>
+  <reg name="r19" regnum="19" bitsize="32"/>
+  <reg name="r20" regnum="20" bitsize="32"/>
+  <reg name="r21" regnum="21" bitsize="32"/>
+  <reg name="r22" regnum="22" bitsize="32"/>
+  <reg name="r23" regnum="23" bitsize="32"/>
+  <reg name="r24" regnum="24" bitsize="32"/>
+  <reg name="r25" regnum="25" bitsize="32"/>
+  <reg name="r26" regnum="26" bitsize="32"/>
+  <reg name="r27" regnum="27" bitsize="32"/>
+  <reg name="r28" regnum="28" bitsize="32"/>
+  <reg name="r29" regnum="29" bitsize="32"/>
+  <reg name="r30" regnum="30" bitsize="32"/>
+  <reg name="r31" regnum="31" bitsize="32"/>
+
+  <!-- Next Instruction Address: -->
+  <reg name="pc" regnum="64" bitsize="32" type="code_ptr"/>
+
+  <!-- Machine Status Register: -->
+  <reg name="msr" regnum="65" bitsize="32"/>
+
+  <!-- Condition Register: -->
+  <reg name="cr" regnum="66" bitsize="32"/>
+
+  <!-- Link Register: -->
+  <reg name="lr" regnum="67" bitsize="32"/>
+
+  <!-- Count Register: -->
+  <reg name="ctr" regnum="68" bitsize="32"/>
+
+  <!-- Integer Exception Register: -->
+  <reg name="xer" regnum="69" bitsize="32"/>
+
+  <!-- /Preserve register numbering. -->
+
+  <!-- General Purpose Register 0 -->
+  <reg name="gpr0" regnum="71" bitsize="32"/>
+
+  <!-- General Purpose Register 1 -->
+  <reg name="gpr1" regnum="72" bitsize="32"/>
+
+  <!-- General Purpose Register 10 -->
+  <reg name="gpr10" regnum="73" bitsize="32"/>
+
+  <!-- General Purpose Register 11 -->
+  <reg name="gpr11" regnum="74" bitsize="32"/>
+
+  <!-- General Purpose Register 12 -->
+  <reg name="gpr12" regnum="75" bitsize="32"/>
+
+  <!-- General Purpose Register 13 -->
+  <reg name="gpr13" regnum="76" bitsize="32"/>
+
+  <!-- General Purpose Register 14 -->
+  <reg name="gpr14" regnum="77" bitsize="32"/>
+
+  <!-- General Purpose Register 15 -->
+  <reg name="gpr15" regnum="78" bitsize="32"/>
+
+  <!-- General Purpose Register 16 -->
+  <reg name="gpr16" regnum="79" bitsize="32"/>
+
+  <!-- General Purpose Register 17 -->
+  <reg name="gpr17" regnum="80" bitsize="32"/>
+
+  <!-- General Purpose Register 18 -->
+  <reg name="gpr18" regnum="81" bitsize="32"/>
+
+  <!-- General Purpose Register 19 -->
+  <reg name="gpr19" regnum="82" bitsize="32"/>
+
+  <!-- General Purpose Register 2 -->
+  <reg name="gpr2" regnum="83" bitsize="32"/>
+
+  <!-- General Purpose Register 20 -->
+  <reg name="gpr20" regnum="84" bitsize="32"/>
+
+  <!-- General Purpose Register 21 -->
+  <reg name="gpr21" regnum="85" bitsize="32"/>
+
+  <!-- General Purpose Register 22 -->
+  <reg name="gpr22" regnum="86" bitsize="32"/>
+
+  <!-- General Purpose Register 23 -->
+  <reg name="gpr23" regnum="87" bitsize="32"/>
+
+  <!-- General Purpose Register 24 -->
+  <reg name="gpr24" regnum="88" bitsize="32"/>
+
+  <!-- General Purpose Register 25 -->
+  <reg name="gpr25" regnum="89" bitsize="32"/>
+
+  <!-- General Purpose Register 26 -->
+  <reg name="gpr26" regnum="90" bitsize="32"/>
+
+  <!-- General Purpose Register 27 -->
+  <reg name="gpr27" regnum="91" bitsize="32"/>
+
+  <!-- General Purpose Register 28 -->
+  <reg name="gpr28" regnum="92" bitsize="32"/>
+
+  <!-- General Purpose Register 29 -->
+  <reg name="gpr29" regnum="93" bitsize="32"/>
+
+  <!-- General Purpose Register 3 -->
+  <reg name="gpr3" regnum="94" bitsize="32"/>
+
+  <!-- General Purpose Register 30 -->
+  <reg name="gpr30" regnum="95" bitsize="32"/>
+
+  <!-- General Purpose Register 31 -->
+  <reg name="gpr31" regnum="96" bitsize="32"/>
+
+  <!-- General Purpose Register 4 -->
+  <reg name="gpr4" regnum="97" bitsize="32"/>
+
+  <!-- General Purpose Register 5 -->
+  <reg name="gpr5" regnum="98" bitsize="32"/>
+
+  <!-- General Purpose Register 6 -->
+  <reg name="gpr6" regnum="99" bitsize="32"/>
+
+  <!-- General Purpose Register 7 -->
+  <reg name="gpr7" regnum="100" bitsize="32"/>
+
+  <!-- General Purpose Register 8 -->
+  <reg name="gpr8" regnum="101" bitsize="32"/>
+
+  <!-- General Purpose Register 9 -->
+  <reg name="gpr9" regnum="102" bitsize="32"/>
+
+  <!-- Alternate Time Base register Lower -->
+  <reg name="atbl" regnum="135" bitsize="32"/>
+
+  <!-- Alternate Time Base register Upper -->
+  <reg name="atbu" regnum="136" bitsize="32"/>
+
+  <!-- Branch Unit Control and Status Register 0 -->
+  <reg name="bucsr0" regnum="137" bitsize="32"/>
+
+  <!-- Critical Save/Restore Register 0 -->
+  <reg name="csrr0" regnum="138" bitsize="32"/>
+
+  <!-- Critical Save/Restore Register 1 -->
+  <reg name="csrr1" regnum="139" bitsize="32"/>
+
+  <!-- Count Register -->
+  <reg name="ctr" regnum="140" bitsize="32"/>
+
+  <!-- Data Address Compare 1 -->
+  <reg name="dac1" regnum="141" bitsize="32"/>
+
+  <!-- Data Address Compare 2 -->
+  <reg name="dac2" regnum="142" bitsize="32"/>
+
+  <!-- Debug Control Register 0 -->
+  <reg name="dbcr0" regnum="143" bitsize="32"/>
+
+  <!-- Debug Control Register 1 -->
+  <reg name="dbcr1" regnum="144" bitsize="32"/>
+
+  <!-- Debug Control Register 2 -->
+  <reg name="dbcr2" regnum="145" bitsize="32"/>
+
+  <!-- Debug Status Register -->
+  <reg name="dbsr" regnum="146" bitsize="32"/>
+
+  <!-- Debug Status Register Write Register -->
+  <reg name="dbsrwr" regnum="147" bitsize="32"/>
+
+  <!-- Debug Data Acquisition Message -->
+  <reg name="ddam" regnum="148" bitsize="32"/>
+
+  <!-- Data Exception Address Register -->
+  <reg name="dear" regnum="149" bitsize="32"/>
+
+  <!-- Decrementer -->
+  <reg name="dec" regnum="150" bitsize="32"/>
+
+  <!-- Decrementer Auto-Reload -->
+  <reg name="decar" regnum="151" bitsize="32"/>
+
+  <!-- Save/Restore Register 0 -->
+  <reg name="dsrr0" regnum="152" bitsize="32"/>
+
+  <!-- Debug Save/Restore Register 1 -->
+  <reg name="dsrr1" regnum="153" bitsize="32"/>
+
+  <!-- Embedded Hypervisor Control and Status Register -->
+  <reg name="ehcsr" regnum="154" bitsize="32"/>
+
+  <!-- External PID Load Context Register -->
+  <reg name="eplc" regnum="155" bitsize="32"/>
+
+  <!-- External Proxy Register -->
+  <reg name="epr" regnum="156" bitsize="32"/>
+
+  <!-- External PID Store Context Register -->
+  <reg name="epsc" regnum="157" bitsize="32"/>
+
+  <!-- Exception Syndrome Register -->
+  <reg name="esr" regnum="158" bitsize="32"/>
+
+  <!-- Guest External Proxy Register -->
+  <reg name="gepr" regnum="159" bitsize="32"/>
+
+  <!-- Guest Exception Syndrome Register -->
+  <reg name="gesr" regnum="160" bitsize="32"/>
+
+  <!-- Guest Interrupt Vector Offset Register 13 -->
+  <reg name="givor13" regnum="161" bitsize="32"/>
+
+  <!-- Guest Interrupt Vector Offset Register 14 -->
+  <reg name="givor14" regnum="162" bitsize="32"/>
+
+  <!-- Guest Interrupt Vector Offset Register 2 -->
+  <reg name="givor2" regnum="163" bitsize="32"/>
+
+  <!-- Guest Interrupt Vector Offset Register 3 -->
+  <reg name="givor3" regnum="164" bitsize="32"/>
+
+  <!-- Guest Interrupt Vector Offset Register 4 -->
+  <reg name="givor4" regnum="165" bitsize="32"/>
+
+  <!-- Guest Interrupt Vector Offset Register 8 -->
+  <reg name="givor8" regnum="166" bitsize="32"/>
+
+  <!-- Guest Interrupt Vector Prefix Register -->
+  <reg name="givpr" regnum="167" bitsize="32"/>
+
+  <!-- Guest Processor Identification Register -->
+  <reg name="gpir" regnum="168" bitsize="32"/>
+
+  <!-- Guest Special Purpose Register General 0 -->
+  <reg name="gsprg0" regnum="169" bitsize="32"/>
+
+  <!-- Guest Special Purpose Register General 1 -->
+  <reg name="gsprg1" regnum="170" bitsize="32"/>
+
+  <!-- Guest Special Purpose Register General 2 -->
+  <reg name="gsprg2" regnum="171" bitsize="32"/>
+
+  <!-- Guest Special Purpose Register General 3 -->
+  <reg name="gsprg3" regnum="172" bitsize="32"/>
+
+  <!-- Guest Save Restore Register 0 -->
+  <reg name="gsrr0" regnum="173" bitsize="32"/>
+
+  <!-- Guest Save Restore Register 1 -->
+  <reg name="gsrr1" regnum="174" bitsize="32"/>
+
+  <!-- Guest Data Effective Address Register -->
+  <reg name="gdear" regnum="175" bitsize="32"/>
+
+  <!-- Hardware Debug Control Register 0 -->
+  <reg name="hdbcr0" regnum="176" bitsize="32"/>
+
+  <!-- Hardware Debug Control Register 1 -->
+  <reg name="hdbcr1" regnum="177" bitsize="32"/>
+
+  <!-- Hardware Debug Control Register 2 -->
+  <reg name="hdbcr2" regnum="178" bitsize="32"/>
+
+  <!-- Hardware Debug Control Register 3 -->
+  <reg name="hdbcr3" regnum="179" bitsize="32"/>
+
+  <!-- Hardware Debug Control Register 4 -->
+  <reg name="hdbcr4" regnum="180" bitsize="32"/>
+
+  <!-- Hardware Debug Control Register 5 -->
+  <reg name="hdbcr5" regnum="181" bitsize="32"/>
+
+  <!-- Hardware Debug Control Register 6 -->
+  <reg name="hdbcr6" regnum="182" bitsize="32"/>
+
+  <!-- Hardware Implementation-Dependent Register 0 -->
+  <reg name="hid0" regnum="183" bitsize="32"/>
+
+  <!-- Instruction Address Compare 1 -->
+  <reg name="iac1" regnum="184" bitsize="32"/>
+
+  <!-- Instruction Address Compare 2 -->
+  <reg name="iac2" regnum="185" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 0 (Critical Input) -->
+  <reg name="ivor0" regnum="186" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 1 (Machine Check) -->
+  <reg name="ivor1" regnum="187" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 10 (Decrementer) -->
+  <reg name="ivor10" regnum="188" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 11 (Fixed-Interval Timer Interrupt) -->
+  <reg name="ivor11" regnum="189" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 12 (Watchdog Timer Interrupt) -->
+  <reg name="ivor12" regnum="190" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 13 (Data TLB Error) -->
+  <reg name="ivor13" regnum="191" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 14 (Instruction TLB Error) -->
+  <reg name="ivor14" regnum="192" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 15 (Debug) -->
+  <reg name="ivor15" regnum="193" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 2 (Data Storage) -->
+  <reg name="ivor2" regnum="194" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 3 (Instruction Storage) -->
+  <reg name="ivor3" regnum="195" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 35 -->
+  <reg name="ivor35" regnum="196" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 36 -->
+  <reg name="ivor36" regnum="197" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 37 -->
+  <reg name="ivor37" regnum="198" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 38 -->
+  <reg name="ivor38" regnum="199" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 39 -->
+  <reg name="ivor39" regnum="200" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 4 (External Input) -->
+  <reg name="ivor4" regnum="201" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 40 -->
+  <reg name="ivor40" regnum="202" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 41 -->
+  <reg name="ivor41" regnum="203" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 5 (Alignment) -->
+  <reg name="ivor5" regnum="204" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 6 (Program) -->
+  <reg name="ivor6" regnum="205" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 7 (Floating-Point Unavailable) -->
+  <reg name="ivor7" regnum="206" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 8 (System Call) -->
+  <reg name="ivor8" regnum="207" bitsize="32"/>
+
+  <!-- Interrupt Vector Offset Register 9 (Auxillary Processor Unavailable) -->
+  <reg name="ivor9" regnum="208" bitsize="32"/>
+
+  <!-- Interrupt Vector Prefix Register -->
+  <reg name="ivpr" regnum="209" bitsize="32"/>
+
+  <!-- L1 Cache Configure Register 0 -->
+  <reg name="l1cfg0" regnum="210" bitsize="32"/>
+
+  <!-- L1 Cache Configure Register 1 -->
+  <reg name="l1cfg1" regnum="211" bitsize="32"/>
+
+  <!-- L1 Cache Control and Status Register 0 -->
+  <reg name="l1csr0" regnum="212" bitsize="32"/>
+
+  <!-- L1 Cache Control and Status Register 1 -->
+  <reg name="l1csr1" regnum="213" bitsize="32"/>
+
+  <!-- L1 Cache Control and Status Register 2 -->
+  <reg name="l1csr2" regnum="214" bitsize="32"/>
+
+  <!-- L2 Cache error data high capture register -->
+  <reg name="l2captdatahi" regnum="215" bitsize="32"/>
+
+  <!-- L2 Cache error data low capture register -->
+  <reg name="l2captdatalo" regnum="216" bitsize="32"/>
+
+  <!-- L2 Cache error capture ECC syndrome register -->
+  <reg name="l2captecc" regnum="217" bitsize="32"/>
+
+  <!-- L2 Cache Configuration Register -->
+  <reg name="l2cfg0" regnum="218" bitsize="32"/>
+
+  <!-- L2 Cache Control and Status Register -->
+  <reg name="l2csr0" regnum="219" bitsize="32"/>
+
+  <!-- L2 Cache Control and Status Register 1 -->
+  <reg name="l2csr1" regnum="220" bitsize="32"/>
+
+  <!-- L2 Cache error address capture register -->
+  <reg name="l2erraddr" regnum="221" bitsize="32"/>
+
+  <!-- L2 Cache error attributes register -->
+  <reg name="l2errattr" regnum="222" bitsize="32"/>
+
+  <!-- L2 Cache error control register -->
+  <reg name="l2errctl" regnum="223" bitsize="32"/>
+
+  <!-- L2 Cache Error Detect Register -->
+  <reg name="l2errdet" regnum="224" bitsize="32"/>
+
+  <!-- L2 Cache Error Disable Register -->
+  <reg name="l2errdis" regnum="225" bitsize="32"/>
+
+  <!-- L2 Cache Error extended address capture register -->
+  <reg name="l2erreaddr" regnum="226" bitsize="32"/>
+
+  <!-- L2 Cache error injection control register -->
+  <reg name="l2errinjctl" regnum="227" bitsize="32"/>
+
+  <!-- L2 Cache error injection mask high register -->
+  <reg name="l2errinjhi" regnum="228" bitsize="32"/>
+
+  <!-- L2 Cache error injection mask low register -->
+  <reg name="l2errinjlo" regnum="229" bitsize="32"/>
+
+  <!-- L2 Cache error interrupt enable register -->
+  <reg name="l2errinten" regnum="230" bitsize="32"/>
+
+  <!-- Logical Partition ID Format Register -->
+  <reg name="lpidr" regnum="231" bitsize="32"/>
+
+  <!-- Link Register -->
+  <reg name="lr" regnum="232" bitsize="32"/>
+
+  <!-- MMU Assist Register 0 -->
+  <reg name="mas0" regnum="233" bitsize="32"/>
+
+  <!-- MMU Assist Register 1 -->
+  <reg name="mas1" regnum="234" bitsize="32"/>
+
+  <!-- MMU Assist Register 2 -->
+  <reg name="mas2" regnum="235" bitsize="32"/>
+
+  <!-- MMU Assist Register 3 -->
+  <reg name="mas3" regnum="236" bitsize="32"/>
+
+  <!-- MMU Assist Register 4 -->
+  <reg name="mas4" regnum="237" bitsize="32"/>
+
+  <!-- MMU Assist Register 5 -->
+  <reg name="mas5" regnum="238" bitsize="32"/>
+
+  <!-- MMU Assist Register 6 -->
+  <reg name="mas6" regnum="239" bitsize="32"/>
+
+  <!-- MMU Assist Register 7 -->
+  <reg name="mas7" regnum="240" bitsize="32"/>
+
+  <!-- MMU Assist Register 8 -->
+  <reg name="mas8" regnum="241" bitsize="32"/>
+
+  <!-- Machine Check Address Register -->
+  <reg name="mcar" regnum="242" bitsize="32"/>
+
+  <!-- Machine Check Address Register Upper -->
+  <reg name="mcaru" regnum="243" bitsize="32"/>
+
+  <!-- Machine Check Syndrome Register -->
+  <reg name="mcsr" regnum="244" bitsize="32"/>
+
+  <!-- Machine Check Save/Restore Register 0 -->
+  <reg name="mcsrr0" regnum="245" bitsize="32"/>
+
+  <!-- Machine Check Save/Restore Register 1 -->
+  <reg name="mcsrr1" regnum="246" bitsize="32"/>
+
+  <!-- MMU Configuration Register -->
+  <reg name="mmucfg" regnum="247" bitsize="32"/>
+
+  <!-- MMU Control and Status Register 0 -->
+  <reg name="mmucsr0" regnum="248" bitsize="32"/>
+
+  <!-- MSR Protect Register -->
+  <reg name="msrp" regnum="249" bitsize="32"/>
+
+  <!-- Nexus Processor ID Register -->
+  <reg name="npidr" regnum="250" bitsize="32"/>
+
+  <!-- Process ID Register 0 -->
+  <reg name="pid0" regnum="251" bitsize="32"/>
+
+  <!-- Processor ID Register -->
+  <reg name="pir" regnum="252" bitsize="32"/>
+
+  <!-- Processor Version Register -->
+  <reg name="pvr" regnum="253" bitsize="32"/>
+
+  <!-- SPR General 0 -->
+  <reg name="sprg0" regnum="254" bitsize="32"/>
+
+  <!-- SPR General 1 -->
+  <reg name="sprg1" regnum="255" bitsize="32"/>
+
+  <!-- SPR General 2 -->
+  <reg name="sprg2" regnum="256" bitsize="32"/>
+
+  <!-- SPR General 3 -->
+  <reg name="sprg3" regnum="257" bitsize="32"/>
+
+  <!-- SPR General 4 -->
+  <reg name="sprg4" regnum="258" bitsize="32"/>
+
+  <!-- SPR General 5 -->
+  <reg name="sprg5" regnum="259" bitsize="32"/>
+
+  <!-- SPR General 6 -->
+  <reg name="sprg6" regnum="260" bitsize="32"/>
+
+  <!-- SPR General 7 -->
+  <reg name="sprg7" regnum="261" bitsize="32"/>
+
+  <!-- SPR General Register 8 -->
+  <reg name="sprg8" regnum="262" bitsize="32"/>
+
+  <!-- SPR General Register 9 -->
+  <reg name="sprg9" regnum="263" bitsize="32"/>
+
+  <!-- Save/Restore Register 0 -->
+  <reg name="srr0" regnum="264" bitsize="32"/>
+
+  <!-- Save/Restore Register 1 -->
+  <reg name="srr1" regnum="265" bitsize="32"/>
+
+  <!-- System Version Register -->
+  <reg name="svr" regnum="266" bitsize="32"/>
+
+  <!-- Supervisor Time Base Lower -->
+  <reg name="tbl" regnum="267" bitsize="32"/>
+
+  <!-- Supervisor Time Base Upper -->
+  <reg name="tbu" regnum="268" bitsize="32"/>
+
+  <!-- Timer Control Register -->
+  <reg name="tcr" regnum="269" bitsize="32"/>
+
+  <!-- TLB Configuration Register 0 -->
+  <reg name="tlbcfg0" regnum="270" bitsize="32"/>
+
+  <!-- TLB Configuration Register 1 -->
+  <reg name="tlbcfg1" regnum="271" bitsize="32"/>
+
+  <!-- Timer Status Register -->
+  <reg name="tsr" regnum="272" bitsize="32"/>
+
+  <!-- User SPR General 0 -->
+  <reg name="usprg0" regnum="273" bitsize="32"/>
+
+  <!-- User SPR General 3 -->
+  <reg name="usprg3" regnum="274" bitsize="32"/>
+
+  <!-- User SPR General 4 -->
+  <reg name="usprg4" regnum="275" bitsize="32"/>
+
+  <!-- User SPR General 5 -->
+  <reg name="usprg5" regnum="276" bitsize="32"/>
+
+  <!-- User SPR General 6 -->
+  <reg name="usprg6" regnum="277" bitsize="32"/>
+
+  <!-- User SPR General 7 -->
+  <reg name="usprg7" regnum="278" bitsize="32"/>
+
+  <!-- User Time Base Lower -->
+  <reg name="utbl" regnum="279" bitsize="32"/>
+
+  <!-- User Time Base Upper -->
+  <reg name="utbu" regnum="280" bitsize="32"/>
+
+  <!-- Integer Exception Register -->
+  <reg name="xer" regnum="281" bitsize="32"/>
+
+  <!-- Floating Point Status and Control Register -->
+  <reg name="fpscr" regnum="282" bitsize="32"/>
+
+  <!-- Condition Code Register -->
+  <reg name="cr" regnum="283" bitsize="32"/>
+
+  <!-- Machine State Register -->
+  <reg name="msr" regnum="284" bitsize="32"/>
+
+  <!-- Next Instruction Address -->
+  <reg name="nia" regnum="285" bitsize="32"/>
+
+  <!-- Current Instruction Address -->
+  <reg name="cia" regnum="286" bitsize="32"/>
+
+  <!-- Reservation register -->
+  <reg name="resrv" regnum="287" bitsize="64"/>
+
+  <!-- Performance Monitor Counter Register 0 -->
+  <reg name="pmc0" regnum="288" bitsize="32"/>
+
+  <!-- Performance Monitor Counter Register 1 -->
+  <reg name="pmc1" regnum="289" bitsize="32"/>
+
+  <!-- Performance Monitor Counter Register 2 -->
+  <reg name="pmc2" regnum="290" bitsize="32"/>
+
+  <!-- Performance Monitor Counter Register 3 -->
+  <reg name="pmc3" regnum="291" bitsize="32"/>
+
+  <!-- Performance Monitor Global Control Register 0 -->
+  <reg name="pmgc0" regnum="292" bitsize="32"/>
+
+  <!-- Performance Monitor Local Control A Register 0 -->
+  <reg name="pmlca0" regnum="293" bitsize="32"/>
+
+  <!-- Performance Monitor Local Control A Register 1 -->
+  <reg name="pmlca1" regnum="294" bitsize="32"/>
+
+  <!-- Performance Monitor Local Control A Register 2 -->
+  <reg name="pmlca2" regnum="295" bitsize="32"/>
+
+  <!-- Performance Monitor Local Control A Register 3 -->
+  <reg name="pmlca3" regnum="296" bitsize="32"/>
+
+  <!-- Performance Monitor Local Control B Register 0 -->
+  <reg name="pmlcb0" regnum="297" bitsize="32"/>
+
+  <!-- Performance Monitor Local Control B Register 1 -->
+  <reg name="pmlcb1" regnum="298" bitsize="32"/>
+
+  <!-- Performance Monitor Local Control B Register 2 -->
+  <reg name="pmlcb2" regnum="299" bitsize="32"/>
+
+  <!-- Performance Monitor Local Control B Register 3 -->
+  <reg name="pmlcb3" regnum="300" bitsize="32"/>
+
+  <!-- User Performance Monitor Counter Register 0 -->
+  <reg name="upmc0" regnum="301" bitsize="32"/>
+
+  <!-- User Performance Monitor Counter Register 1 -->
+  <reg name="upmc1" regnum="302" bitsize="32"/>
+
+  <!-- User Performance Monitor Counter Register 2 -->
+  <reg name="upmc2" regnum="303" bitsize="32"/>
+
+  <!-- User Performance Monitor Counter Register 3 -->
+  <reg name="upmc3" regnum="304" bitsize="32"/>
+
+  <!-- User Performance Monitor Global Control Register 0 -->
+  <reg name="upmgc0" regnum="305" bitsize="32"/>
+
+  <!-- User Performance Monitor Local Control A Register 0 -->
+  <reg name="upmlca0" regnum="306" bitsize="32"/>
+
+  <!-- User Performance Monitor Local Control A Register 1 -->
+  <reg name="upmlca1" regnum="307" bitsize="32"/>
+
+  <!-- User Performance Monitor Local Control A Register 2 -->
+  <reg name="upmlca2" regnum="308" bitsize="32"/>
+
+  <!-- User Performance Monitor Local Control A Register 3 -->
+  <reg name="upmlca3" regnum="309" bitsize="32"/>
+
+  <!-- User Performance Monitor Local Control B Register 0 -->
+  <reg name="upmlcb0" regnum="310" bitsize="32"/>
+
+  <!-- User Performance Monitor Local Control B Register 1 -->
+  <reg name="upmlcb1" regnum="311" bitsize="32"/>
+
+  <!-- User Performance Monitor Local Control B Register 2 -->
+  <reg name="upmlcb2" regnum="312" bitsize="32"/>
+
+  <!-- User Performance Monitor Local Control B Register 3 -->
+  <reg name="upmlcb3" regnum="313" bitsize="32"/>
+
+  <!-- Pseudo-reg for elfv4's rst_base signals (6 msb of default page) -->
+  <reg name="rst_base" regnum="314" bitsize="32"/>
+
+  <!-- External Debug Control Register 0 -->
+  <reg name="edbcr0" regnum="315" bitsize="32"/>
+
+ </feature>
+
+ <!-- By Section F.4.4 in the GDB 6.7 manual, 
+      we need the following feature. -->
+ <feature name="org.gnu.gdb.power.fpu">
+
+  <!-- Preserve register numbering. -->
+
+  <!-- Floating Point Registers -->
+  <reg name="f0"  regnum="32" bitsize="64" type="ieee_double"/>
+  <reg name="f1"  regnum="33" bitsize="64" type="ieee_double"/>
+  <reg name="f2"  regnum="34" bitsize="64" type="ieee_double"/>
+  <reg name="f3"  regnum="35" bitsize="64" type="ieee_double"/>
+  <reg name="f4"  regnum="36" bitsize="64" type="ieee_double"/>
+  <reg name="f5"  regnum="37" bitsize="64" type="ieee_double"/>
+  <reg name="f6"  regnum="38" bitsize="64" type="ieee_double"/>
+  <reg name="f7"  regnum="39" bitsize="64" type="ieee_double"/>
+  <reg name="f8"  regnum="40" bitsize="64" type="ieee_double"/>
+  <reg name="f9"  regnum="41" bitsize="64" type="ieee_double"/>
+  <reg name="f10" regnum="42" bitsize="64" type="ieee_double"/>
+  <reg name="f11" regnum="43" bitsize="64" type="ieee_double"/>
+  <reg name="f12" regnum="44" bitsize="64" type="ieee_double"/>
+  <reg name="f13" regnum="45" bitsize="64" type="ieee_double"/>
+  <reg name="f14" regnum="46" bitsize="64" type="ieee_double"/>
+  <reg name="f15" regnum="47" bitsize="64" type="ieee_double"/>
+  <reg name="f16" regnum="48" bitsize="64" type="ieee_double"/>
+  <reg name="f17" regnum="49" bitsize="64" type="ieee_double"/>
+  <reg name="f18" regnum="50" bitsize="64" type="ieee_double"/>
+  <reg name="f19" regnum="51" bitsize="64" type="ieee_double"/>
+  <reg name="f20" regnum="52" bitsize="64" type="ieee_double"/>
+  <reg name="f21" regnum="53" bitsize="64" type="ieee_double"/>
+  <reg name="f22" regnum="54" bitsize="64" type="ieee_double"/>
+  <reg name="f23" regnum="55" bitsize="64" type="ieee_double"/>
+  <reg name="f24" regnum="56" bitsize="64" type="ieee_double"/>
+  <reg name="f25" regnum="57" bitsize="64" type="ieee_double"/>
+  <reg name="f26" regnum="58" bitsize="64" type="ieee_double"/>
+  <reg name="f27" regnum="59" bitsize="64" type="ieee_double"/>
+  <reg name="f28" regnum="60" bitsize="64" type="ieee_double"/>
+  <reg name="f29" regnum="61" bitsize="64" type="ieee_double"/>
+  <reg name="f30" regnum="62" bitsize="64" type="ieee_double"/>
+  <reg name="f31" regnum="63" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Status and Control Register -->
+  <reg name="fpscr" regnum="70" bitsize="32" group="float"/>
+
+  <!-- /Preserve register numbering. -->
+
+  <!-- Floating Point Register 0 -->
+  <reg name="fpr0" regnum="103" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 1 -->
+  <reg name="fpr1" regnum="104" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 10 -->
+  <reg name="fpr10" regnum="105" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 11 -->
+  <reg name="fpr11" regnum="106" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 12 -->
+  <reg name="fpr12" regnum="107" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 13 -->
+  <reg name="fpr13" regnum="108" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 14 -->
+  <reg name="fpr14" regnum="109" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 15 -->
+  <reg name="fpr15" regnum="110" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 16 -->
+  <reg name="fpr16" regnum="111" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 17 -->
+  <reg name="fpr17" regnum="112" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 18 -->
+  <reg name="fpr18" regnum="113" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 19 -->
+  <reg name="fpr19" regnum="114" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 2 -->
+  <reg name="fpr2" regnum="115" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 20 -->
+  <reg name="fpr20" regnum="116" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 21 -->
+  <reg name="fpr21" regnum="117" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 22 -->
+  <reg name="fpr22" regnum="118" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 23 -->
+  <reg name="fpr23" regnum="119" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 24 -->
+  <reg name="fpr24" regnum="120" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 25 -->
+  <reg name="fpr25" regnum="121" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 26 -->
+  <reg name="fpr26" regnum="122" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 27 -->
+  <reg name="fpr27" regnum="123" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 28 -->
+  <reg name="fpr28" regnum="124" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 29 -->
+  <reg name="fpr29" regnum="125" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 3 -->
+  <reg name="fpr3" regnum="126" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 30 -->
+  <reg name="fpr30" regnum="127" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 31 -->
+  <reg name="fpr31" regnum="128" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 4 -->
+  <reg name="fpr4" regnum="129" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 5 -->
+  <reg name="fpr5" regnum="130" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 6 -->
+  <reg name="fpr6" regnum="131" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 7 -->
+  <reg name="fpr7" regnum="132" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 8 -->
+  <reg name="fpr8" regnum="133" bitsize="64" type="ieee_double"/>
+
+  <!-- Floating Point Register 9 -->
+  <reg name="fpr9" regnum="134" bitsize="64" type="ieee_double"/>
+
+ </feature>
+
+</target>

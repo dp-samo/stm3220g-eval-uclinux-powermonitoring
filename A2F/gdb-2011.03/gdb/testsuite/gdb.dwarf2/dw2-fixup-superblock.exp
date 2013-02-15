@@ -1,0 +1,121 @@
+# Copyright 2010 Free Software Foundation, Inc.
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# This test can only be run on targets which support DWARF-2 and use gas.
+# For now pick a sampling of likely targets.
+if {![istarget *-*-linux*]
+    && ![istarget *-*-gnu*]
+    && ![istarget *-*-elf*]
+    && ![istarget *-*-openbsd*]
+    && ![istarget arm-*-eabi*]
+    && ![istarget powerpc-*-eabi*]} {
+    return 0
+}
+
+# RealView (at least 2.2 throught 4.0) puts DW_TAG_inlined_subroutine
+# at the the wrong lexical block.  GDB has a workaround, and this test
+# aims at covering it.
+
+set binfile dw2-fixup-superblock
+set srcfile ${binfile}.c
+set testfile ${binfile}.exp
+
+if { [prepare_for_testing ${testfile} ${binfile} ${srcfile}] } {
+    return -1
+}
+
+runto_main
+
+get_compiler_info $binfile
+get_debug_format
+if { [skip_inline_var_tests] } {
+    untested ${testfile}
+    return
+}
+
+set no_frames [skip_inline_frame_tests]
+
+set bp_location1 [gdb_get_line_number "set breakpoint here 1"]
+set bp_location2 [gdb_get_line_number "set breakpoint here 2"]
+
+gdb_breakpoint $srcfile:$bp_location1
+gdb_breakpoint $srcfile:$bp_location2
+
+set __result "__result = ($decimal|<value optimized out>)"
+
+gdb_test "continue" ".*set breakpoint here 1.*" "continue to here 1"
+gdb_test "next" "counter = INCREMENT.*" "next to INCREMENT call site"
+
+gdb_test "info locals" \
+    "z1 = 3\r\nx = 10\r\ny = 5\r\n(${__result}\r\n)?retVal = 0\r\ncounter = 1" "info locals at here 1"
+
+gdb_test "step" \
+    "INCREMENT \\(.*at .*${srcfile}:.*" \
+    "step into INCREMENT"
+
+gdb_test "next" ".*return INCREMENT2.*" "next to INCREMENT2 call site"
+
+gdb_test "info locals" \
+    "xxx = 1(\r\n${__result})?" "info locals at INCREMENT"
+
+gdb_test "up" \
+    "counter = INCREMENT.*" \
+    "up to INCREMENT's inline site"
+
+# This would fail to show z1,x,y with RealView.
+gdb_test "info locals" \
+    "z1 = 3\r\nx = 10\r\ny = 5\r\n(${__result}\r\n)?retVal = 0\r\ncounter = 1" "info locals at here 1, when not innermost"
+
+gdb_test "step" \
+    "INCREMENT2 .* at .*${srcfile}:.*return .*" \
+    "step into INCREMENT2"
+
+gdb_test "info locals" \
+    "(No locals.|${__result})" "info locals at INCREMENT2"
+
+
+
+## Repeat essentially the same, but in the other lexical block.
+
+gdb_test "continue" ".*set breakpoint here 2.*" "continue to here 2"
+gdb_test "next" "counter = INCREMENT.*" "next to INCREMENT call site 2"
+
+# This would fail to show z2 with RealView 2.2.
+gdb_test "info locals" \
+    "z2 = 9\r\n(${__result}\r\n)?retVal = 8\r\ncounter = 2" "info locals at here 2"
+
+gdb_test "step" \
+    "INCREMENT \\(.*at .*${srcfile}:.*" \
+    "step into INCREMENT (2)"
+
+gdb_test "next" ".*return INCREMENT2.*" "next to INCREMENT2 call site (2)"
+
+gdb_test "info locals" \
+    "xxx = 2(\r\n${__result})?" "info locals at INCREMENT (2)"
+
+gdb_test "up" \
+    "counter = INCREMENT.*" \
+    "up to INCREMENT's inline site (2)"
+
+# This would fail to show z2 with RealView.
+gdb_test "info locals" \
+    "z2 = 9\r\n(${__result}\r\n)?retVal = 8\r\ncounter = 2" "info locals at here 2, when not innermost"
+
+gdb_test "step" \
+    "INCREMENT2 .* at .*${srcfile}:.*return .*" \
+    "step into INCREMENT2 (2)"
+
+gdb_test "info locals" \
+    "(No locals.|${__result})" "info locals at INCREMENT2 (2)"

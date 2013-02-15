@@ -1,0 +1,10 @@
+#
+# common variables used by configure scripts
+#
+SED="/bin/sed"
+CPP="arm-uclinuxeabi-gcc -E"
+GREP="/bin/grep"
+PARTIALTARGETFLAGS="-Uuclinux -Duclinux=uclinux"
+NETSNMP_SYSTEM_INCLUDE_FILE="net-snmp/system/generic.h"
+
+srcdir=.

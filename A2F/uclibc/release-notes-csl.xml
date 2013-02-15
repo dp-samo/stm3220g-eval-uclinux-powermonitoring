@@ -1,0 +1,70 @@
+<!-- This file contains a series of release note fragments processed
+     by gnu-notes.  To add a note to it, use "gnu-notes -a
+     $release_config uclibc".  The TARGET line should contain a
+     list of shell glob patterns for target names to which the note is
+     relevant; it may be removed if it is relevant to all targets.
+ -->
+
+      <!-- UUID: e44dfd63-9cec-4053-988c-240861c430a4 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>uClibc upgrade</title>
+        <para>
+          uClibc has been updated to version 0.9.30 plus additional
+          updates from the uclibc.org repository as of June 2009.
+          Programs linked with uClibc shared libraries from a previous
+          version of &csl_sgxx; must be recompiled to run with the new
+          version of uClibc.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 70793380-95d0-4c34-8a1b-b6321c59095b -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>uClibc <function>splice</function>,
+               <function>vmsplice</function> and
+               <function>tee</function> functions</title>
+        <para>
+          uClibc now provides the functions
+          <function>splice</function>, <function>vmsplice</function>
+          and <function>tee</function>.
+        </para>
+      </formalpara>
+
+      <!-- UUID: a0d19d20-4679-4485-a7e8-665b7e8d62b4 -->
+      <!-- TARGET: m68k-* -->
+      <formalpara>
+        <title>Object file mismatch when linking</title>
+        <para>
+          A bug in uClibc that caused link failures with some
+          <option>-march</option> or <option>-mcpu</option> option
+	  values has been fixed.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 0a1d0ae4-f202-472f-bb0d-02f92a9c75c9 -->
+      <!-- TARGET: arm*-* -->
+      <formalpara>
+        <title>uClibc <function>memcpy</function> and
+               <function>memmove</function> functions</title>
+        <para>
+	  A bug that caused the uClibc implementations of
+	  <function>memcpy</function> and <function>memmove</function>
+	  to return incorrect values has been fixed.
+        </para>
+      </formalpara>
+
+      <!-- UUID: f39f88e7-dfeb-426d-995c-06013539a90c -->
+      <!-- TARGET: m68k-uclinux -->
+      <formalpara>
+        <title>Debugging uClibc ColdFire applications</title>
+        <para>
+	  The uClibc library now includes additional DWARF information to
+	  assist stack unwinding operations in the debugger.  This fixes a
+	  problem that formerly sometimes resulted in illegal memory
+	  accesses and uClinux kernel panics when debugging uClibc ColdFire
+	  applications.
+        </para>
+      </formalpara>
+
+<!-- Release notes end here.  -->

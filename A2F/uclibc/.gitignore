@@ -1,0 +1,25 @@
+#
+# Never ignore these
+#
+!.gitignore
+
+#
+# Generated files
+#
+*.os
+*.oS
+*.dep
+*.a
+*.o
+*.depend
+lib
+.config*
+.*.dep
+#
+# Backups / patches
+#
+*~
+*.orig
+*.rej
+/*.patch
+/*.diff

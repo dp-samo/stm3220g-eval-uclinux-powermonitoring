@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<!DOCTYPE target SYSTEM "gdb-target.dtd">
+<target>
+  <xi:include href="arm-core.xml"/>
+  <xi:include href="arm-fpa.xml"/>
+</target>

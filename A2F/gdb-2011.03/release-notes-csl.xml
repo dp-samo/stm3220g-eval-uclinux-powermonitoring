@@ -1,0 +1,1539 @@
+<!-- This file contains a series of release note fragments processed
+     by gnu-notes.  To add a note to it, use "gnu-notes -a
+     $release_config gdb".  The TARGET line should contain a
+     list of shell glob patterns for target names to which the note is
+     relevant; it may be removed if it is relevant to all targets.
+ -->
+
+      <!-- UUID: bcf12b61-56d5-4f6a-8e87-ea84846cd459 -->
+      <!-- TARGET: sh*-linux* -->
+      <!-- SORT: gdb -->
+      <!-- ISSUE: -->
+      <formalpara>
+        <title>
+          Workaround for kernel error when using <command>gdbserver</command>
+        </title>
+        <para>
+          <command>gdbserver</command> now includes a workaround for a bug
+          present in the Linux kernel between versions 2.6.34 and
+          2.6.37.6/2.6.38.2, which results in an
+          <literal>Unable to handle kernel NULL pointer dereference</literal>
+          error from the kernel when <command>gdbserver</command> attempts to
+          access the floating-point registers of the debugged process. 
+         </para>
+      </formalpara>
+
+      <!-- UUID: 25bd2f4a-a19a-426e-b5ca-1aa02539871b -->
+      <!-- TARGET: mips*-linux* -->
+      <!-- SORT: gdb -->
+      <!-- ISSUE: -->
+      <formalpara>
+        <title><command>gdbserver</command> support for watchpoints</title>
+        <para>
+          <command>gdbserver</command> now supports hardware
+          watchpoints on MIPS GNU/Linux targets.  The Linux kernel
+          version 2.6.28 or later is required.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 5675b162-977b-409d-9ba3-ef7fbc0bf88b -->
+      <!-- TARGET: mips* -->
+      <!-- SORT: gdb -->
+      <formalpara>
+        <title>GDB microMIPS disassembler bug fix</title>
+        <para>
+          A bug in GDB has been fixed that caused some microMIPS
+          instructions to disassemble incorrectly.
+        </para>
+      </formalpara>
+
+      <!-- UUID: b6c70819-668b-40b3-94e0-634c40e36072 -->
+      <!-- TARGET: *-linux* -->
+      <!-- SORT: gdb -->
+      <formalpara>
+        <title>Improved GDB startup times when debugging remote 
+	  targets
+	</title>
+        <para>
+          GDB has been enhanced to reduce the startup times when working
+	  with remote targets via GDBServer, especially when the target uses
+	  a large number of shared libraries.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 87750a99-5ac8-404d-864a-21a73e9799ee -->
+      <!-- TARGET: powerpc* -->
+      <!-- SORT: gdb -->
+      <formalpara>
+        <title>GDB support for e5500</title>
+        <para>
+          GDB now recognizes <literal>powerpc:e5500</literal> as a valid
+          argument to the <command>set architecture</command> command.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 7a8c7f2e-e052-4313-bf96-a44ca9d5906f -->
+      <!-- TARGET: powerpc* -->
+      <formalpara>
+        <title>GDB crash fix for e5500 binaries</title>
+        <para>
+          A bug has been fixed that caused GDB to crash or to
+          print <literal>Architecture of file not recognized</literal>
+          when processing some e5500 binaries.  The bug also affected
+          debugging binaries for other non-e500 processors.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 19a59285-3f3b-4687-9c0c-11d06173eebf -->
+      <!-- TARGET: arm* -->
+      <formalpara>
+        <title>
+	  Improved support for debugging <trademark class="registered">
+	  RealView</trademark> C++ programs
+	</title>
+        <para>
+	  GDB has been enhanced to handle some debug information
+	  contained in binaries produced by the
+	  ARM <trademark class="registered">RealView</trademark>
+	  compiler.  Formerly, GDB sometimes crashed on programs
+	  which use C++ templates.
+	</para>
+      </formalpara>
+
+      <!-- UUID: f7c3b8a0-433a-4398-9293-043ba7e5d941 -->
+      <!-- TARGET: * -->
+      <formalpara components="eclipse_plugin">
+        <title>IDE debugger assignment to I/O registers</title>
+        <para>
+          A bug has been fixed that caused a GDB crash when writing values to
+          read-sensitive I/O registers that have not previously been read.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 320c707d-9305-4dba-992a-3bb95c3b8181 -->
+      <!-- TARGET: * -->
+      <formalpara hosts="windows">
+        <title>GDB crash fix</title>
+        <para>
+          A bug has been fixed that caused GDB to crash on launch if
+          the environment variable <literal>CYGPATH</literal> is set
+          to a program that does not exist or cannot be executed.
+        </para>
+      </formalpara>
+
+      <!-- UUID: e7d27855-fcaa-45c5-9f44-55959ab664e6 -->
+      <!-- TARGET: i686-pc-linux-gnu -->
+      <formalpara>
+	<title>Tracing support</title>
+	<para>
+	  The <command>gdbserver</command> utility now supports
+	  tracepoints.  GDB tracing support has many bug fixes, a new
+	  observer mode, and better reconstruction of tracepoints
+	  after disconnected tracing.  See the GDB manual for more
+	  information.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 1a6ffbf3-49d5-4849-825a-ac92478cec69 -->
+      <!-- TARGET: * -->
+      <formalpara>
+	<title>GDB update</title>
+	<para>
+	  The included version of GDB has been updated to
+	  7.2.50.20100908.  This update adds numerous bug fixes and
+	  new features, including improved C++ language support,
+	  <phrase target-arch="i686">direct access to byte, word and
+	  double-word x86 general-purpose registers,
+	  </phrase> a new command to save breakpoints to a file,
+	  <phrase components="python">
+	  extensive Python API improvements, </phrase> a new
+	  convenience variable <varname>$_thread</varname> that holds
+	  the number of the current thread, among many other
+	  improvements.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 666668c0-007a-4611-9319-406dbe8cc080 -->
+      <!-- TARGET: arm* -->
+      <formalpara>
+        <title>Improved support for debugging
+          <trademark class="registered">RealView</trademark> programs</title>
+        <para>
+          A bug has been fixed that caused GDB to fail to place
+          breakpoints in binaries produced by the
+          ARM <trademark class="registered">RealView</trademark>
+          compiler when the source file location for the breakpoint was
+          specified as an absolute pathname.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 1760e7a6-d2b1-4c00-a792-ea3131561859 -->
+      <!-- TARGET: arm*-* -->
+      <formalpara>
+	<title>
+	  Improved support for debugging <trademark class="registered">
+	  RealView</trademark> programs with inlined functions
+	</title>
+	<para>
+	  GDB has been enhanced to better handle debug information for
+	  inlined functions contained in binaries produced by the
+	  ARM <trademark class="registered">RealView</trademark>
+	  compiler.  Formerly, local variables in inner function
+	  scopes would become unavailable at calls to static inline
+	  functions.  GDB now also includes inlined functions in the
+	  stack trace in binaries produced
+	  by <trademark class="registered">RealView</trademark>
+	  versions earlier than 4.0.  In addition, GDB's support for
+	  stepping over inline functions in programs built with such
+	  compilers has been improved.
+	</para>
+      </formalpara>
+
+      <!-- UUID: bb8b4fc9-07d5-4c04-a495-08423f9f5bd7 -->
+      <!-- TARGET: arm*-* -->
+
+      <formalpara>
+	<title>Thumb-2 single stepping bug fix</title>
+	<para>
+	  A bug in GDB has been fixed that affected single stepping over
+	  Thumb-2 table branch (<literal>TBB</literal> and
+	  <literal>TBH</literal>) instructions.  The bug caused GDB to
+	  sometimes continue target execution rather than step.
+	</para>
+      </formalpara>
+
+      <!-- UUID: bc409cdc-3be5-4209-aacc-f71b0cc8f859 -->
+      <!-- TARGET: mips*-linux* -->
+      <formalpara>
+        <title>Cavium Octeon disassembly</title>
+        <para>
+          GDB now supports disassembling the Cavium Octeon unaligned
+          instructions and the <literal>saa</literal>
+          and <literal>saad</literal> instructions present on some
+          Octeon processors.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 7b4da7e5-b25b-493a-bd3e-3b8ab9ccdef0 -->
+      <!-- TARGET: mips*-linux* -->
+      <formalpara>
+        <title>microMIPS single stepping bug fix</title>
+        <para>
+          A bug in GDB has been fixed that affected single stepping over
+          microMIPS branch instructions.  The bug caused GDB to sometimes
+          continue target execution rather than step.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 758edb7a-3833-4221-8bb2-73e980a3db5c -->
+      <!-- TARGET: *-elf* *-eabi* -->
+      <formalpara>
+	<title>GDB shared library support</title>
+	<para>
+	  GDB now supports targets that report loaded shared libraries
+	  using the <literal>qXfer:libraries:read</literal> Remote
+	  Serial Protocol packet.  For more information, see the GDB
+	  manual.
+	</para>
+      </formalpara>
+
+      <!-- UUID: a6ffe2d9-0d7a-42ae-896b-1e4bb8520517 -->
+      <!-- TARGET: mips*-linux* -->
+      <formalpara>
+        <title>microMIPS breakpoint bug fix</title>
+        <para>
+          A bug in GDB has been fixed that, in some cases, caused an
+          incorrect encoding to be chosen for breakpoints while debugging
+          little-endian programs.  The bug made such breakpoints never hit
+          and caused unpredictable behavior of the program debugged.
+        </para>
+      </formalpara>
+
+      <!-- UUID: cd1c8c8f-b546-4973-8442-b9dfc5c6d6be -->
+      <!-- TARGET: arm* -->
+      <formalpara>
+        <title>
+	  Improved support for debugging <trademark class="registered">
+	  RealView</trademark> programs
+	</title>
+        <para>
+	  GDB has been enhanced to handle some debug information
+	  contained in binaries produced by the
+	  ARM <trademark class="registered">RealView</trademark>
+	  compiler.  Formerly, GDB sometimes crashed on these programs
+	  and libraries.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 4a881c78-6c3f-408d-822c-96c113296c6a -->
+      <!-- TARGET: mips* -->
+      <formalpara components="mips_sprite">
+        <title>GDB MDI target support</title>
+        <para>
+          Microprocessor Debug Interface (MDI) protocol support is now
+          provided by the &csl_sgxx; Debug Sprite for MIPS.
+          The direct MDI support within GDB, which was deprecated with the
+          introduction of the Sprite in a previous release of &csl_prod;,
+          has now been removed.  This includes GDB commands such as
+          <command>target mdi</command>.
+          For information about using the Sprite to debug MDI targets,
+          refer to <xref linkend="sprite"/>.
+          <phrase components="eclipse_plugin" debuggers="mips">
+            The Sprite can also be used from the &csl_sgxx; IDE; refer
+            to <xref linkend="mips-sprite-sec"/> for details.
+          </phrase>
+        </para>
+      </formalpara>
+
+      <!-- UUID: 2cd226df-54e6-4fd8-b696-54df1a514ec0 -->
+      <!-- TARGET: mips*-linux* -->
+      <formalpara>
+        <title>Breakpoint bug fix</title>
+        <para>
+          A bug in GDB has been fixed that, in rare circumstances,
+          caused hitting a breakpoint to result in an illegal instruction
+          or segmentation fault in the program being debugged.
+        </para>
+      </formalpara>
+
+      <!-- UUID: c92f2600-b63f-49b6-b7ca-189c1b0e1088 -->
+      <!-- TARGET: powerpc* -->
+      <formalpara>
+        <title>Improved disassembly of SPE instructions</title>
+        <para>
+          GDB now supports disassembling SPE instructions when using
+          the <command>disassemble</command> command.
+        </para>
+      </formalpara>
+
+      <!-- UUID: b5a5998c-00fe-4917-8ad2-24bac71dcdc2 -->
+      <!-- TARGET: mips*-linux* -->
+      <formalpara>
+        <title>DSP and MIPS-3D ASE single stepping</title>
+        <para>
+          GDB now supports stepping through DSP and MIPS-3D ASE branch
+          instructions.  Earlier versions failed to advance execution.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 90b3ac06-77fa-4ac8-a00d-1aa53e7394f7 -->
+      <!-- TARGET: mips*-linux* -->
+      <formalpara>
+        <title>microMIPS debugging</title>
+        <para>
+          GDB now supports debugging microMIPS code.  Earlier versions
+          of GDB reported the error <literal>software single-stepping
+          unsupported for microMIPS</literal>.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 5e012485-43fa-4a18-883f-15f114cb7d12 -->
+      <!-- TARGET: mips*-linux* -->
+      <formalpara>
+        <title>FP condition branch single stepping bug fix</title>
+        <para>
+          A bug in GDB has been fixed that affected single stepping over
+          floating point condition branch instructions.  The bug caused
+          GDB to sometimes continue target execution rather than step.
+        </para>
+      </formalpara>
+
+      <!-- UUID: c50877e5-0480-4214-a3a0-c2abc70fce93 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>Read watchpoints bug fix</title>
+        <para>
+          A GDB bug has been fixed that caused watchpoints set to
+          trigger on memory reads to be silently ignored in some
+          cases.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 41f3bfe4-dbbe-4c9f-8907-5b3a320969ec -->
+      <!-- TARGET: mips* -->
+      <formalpara>
+        <title>Function breakpoint bug fix</title>
+        <para>
+          A bug in GDB has been fixed that sometimes caused breakpoints
+          on functions without an associated stack frame to be placed
+          at the wrong address.
+        </para>
+      </formalpara>
+
+      <!-- UUID: bc05d1e9-4dac-4bb3-bd55-26696565492e -->
+      <!-- TARGET: arm*-linux* -->
+      <formalpara>
+        <title>Thumb-2 single stepping</title>
+        <para>
+          GDB now supports stepping through Thumb-2 conditionally
+          executed instructions.  Earlier versions of GDB reported the
+          error <literal>Stepping through Thumb-2 IT blocks is not yet
+          supported</literal>.  A bug that caused GDB to lose control
+          when stepping over wide Thumb-2 branch instructions has also been
+          fixed.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 0bec4e4f-88b1-4e38-9996-9f4493522f27 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB update</title>
+        <para>
+	  The included version of GDB has been updated to
+	  7.0.50.20100218.  This update adds numerous bug fixes and
+	  new features, including improved C++ language support,
+	  automatic caching of stack memory, and Position Independent
+	  Executable (PIE) support.
+	</para>
+      </formalpara>
+
+      <!-- UUID: b80f6936-c2b6-4643-8d7f-10a3910166bd -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>Frame manipulation bug fix</title>
+        <para>
+          A bug in GDB has been fixed that caused frame manipulation commands
+          to report an internal error in some cases when used on arbitrary
+          stack frames specified by an address.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 1c5f91a2-7ef6-45cf-bf81-381f46338269 -->
+      <!-- TARGET: arm-*-eabi -->
+      <formalpara>
+        <title>Backtracing through ARM M-profile exceptions</title>
+        <para>
+          GDB now supports backtracing through processor exceptions
+	  on ARMv6-M and ARMv7-M targets, including Cortex-M3.
+        </para>
+      </formalpara>
+
+      <!-- UUID: e739fe0e-bee6-409d-96cf-7e248c99de7e -->
+      <!-- TARGET: arm-none-eabi arm-stellaris-eabi arm-uclinuxeabi -->
+      <formalpara>
+        <title>GDB load improvement</title>
+        <para>
+          GDB now automatically initializes ARM Cortex-M devices to
+          Thumb mode on the <command>load</command> command.  This is
+          helpful, for example, when an incorrect program image was
+          previously flashed onto the board, causing it to enter an
+          invalid state on reset.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 1c77ec06-3b6b-4b24-975b-a3828a89b81b -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB asynchronous mode fix</title>
+        <para>
+          GDB can now be used from the command line in asynchronous mode
+          with remote targets.  Previously, GDB did not accept user input
+          while asynchronous commands (such as
+          <command>continue &amp;</command>) were running.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 4f250c41-a966-4bb4-99e3-4b59a47b7205 -->
+      <!-- TARGET: i686-mingw32 -->
+      <formalpara features="gdbserver">
+        <title><command>gdbserver</command> and interrupting the
+        target</title>
+        <para>
+          A bug has been fixed that prevented
+          <command>gdbserver</command> from interrupting the target
+	  (as by a
+	  <keycombo>
+	    <keycap function="control">Ctrl</keycap>
+	    <keycap>C</keycap>
+	  </keycombo>
+	  when using GDB from the command line).
+        </para>
+      </formalpara>
+
+      <!-- UUID: faed3a3c-1d55-4b59-b6bc-528058d4544f -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>Setting thread-specific breakpoints in GDB</title>
+        <para>
+          A bug in GDB has been fixed that caused a syntax error for
+          the <command>break
+          *<replaceable>expression</replaceable> thread
+          <replaceable>threadnum</replaceable></command> command.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 5109e9ff-4b2c-46a8-9c9c-f73fe5fa5f74 -->
+      <!-- TARGET: *-solaris* -->
+      <formalpara>
+        <title>GDB <command>gcore</command> bug fix</title>
+        <para>
+          A bug in GDB's <command>gcore</command> command has been
+          fixed.  The bug caused GDB to generate core files that
+          resulted in <literal>Can't read pathname for load map: I/O
+          error.</literal> warnings when loaded back into GDB.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 9c31b070-6963-4f0e-b8e7-624d83521f99 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB memory find bug fix</title>
+        <para>
+	  A bug in GDB's <command>find</command> command has been fixed.
+	  The bug caused searches on large memory areas to fail or
+	  report matches at incorrect addresses.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 87c50426-014e-44fd-95a9-e78bc4e45c80 -->
+      <!-- TARGET: * -->
+      <formalpara>
+	<title>GDB and programs linked with
+	  the <option>--gc-sections</option> linker option</title>
+	<para>
+	  GDB has been improved to better handle debug information
+	  found in programs and libraries linked with
+	  the <option>--gc-sections</option> option.  GDB formerly
+	  selected the wrong debug information in some cases,
+	  resulting in incorrect behavior when stepping over a
+	  function or displaying local variables, for example.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 3705dbd2-a8d3-4228-90ba-76ed7efa9bcb -->
+      <!-- TARGET: * -->
+      <formalpara>
+	<title>GDB interrupt handling bug fix</title>
+	<para>
+	  A bug in GDB has been fixed that caused it to sometimes
+	  fail to indicate that the target had stopped after being
+	  interrupted.	The bug affected
+	  <phrase components="eclipse_plugin">the &csl_sgxx; IDE and
+	    other</phrase> clients using GDB's MI front end.
+	</para>
+      </formalpara>
+
+      <!-- UUID: a1775fbb-39a8-4657-9265-ab3998125562 -->
+      <!-- TARGET: *-elf* *-eabi* -->
+      <formalpara>
+	<title>Debugger errors after loading program</title>
+	<para>
+	  A bug in GDB has been fixed that sometimes caused a GDB internal error
+	  <phrase components="eclipse_plugin">
+	    or an IDE timeout message
+	  </phrase>
+	  after the <command>load</command> command.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 455d020f-48aa-406c-a4b8-a56a19e4f092 -->
+      <!-- TARGET: i686-mingw32 -->
+      <formalpara components="eclipse_plugin">
+        <title>Timeouts when debugging in the IDE</title>
+        <para>
+          An IDE bug that caused sporadic <guilabel>Target is not
+          responding</guilabel> errors has been fixed. This bug was 
+          specific to using the Native debugger on Windows hosts.          
+        </para>
+      </formalpara>
+
+      <!-- UUID: 1bef8e08-e3e5-46f6-97f2-735045975eda -->
+      <!-- TARGET: *-solaris* -->
+      <formalpara>
+        <title>GDB core reading fix</title>
+        <para>
+          A bug has been fixed that caused a GDB internal error when
+          reading core dump files generated with the
+          <command>gcore</command> command.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 7780f269-15f8-4375-b426-cf92a22a40c2 -->
+      <!-- TARGET: * -->
+      <formalpara hosts="windows">
+        <title>GDB support for Cygwin pathnames</title>
+        <para>
+	  A bug in GDB's translation of Cygwin pathnames has been fixed.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 0acc06d4-a7b6-4d58-bc18-70153e83340b -->
+      <!-- TARGET: sh*-linux* -->
+      <formalpara>
+        <title>Post-mortem debugging</title>
+        <para>
+          Post-mortem debugging using core dumps has now been implemented
+          for SH GNU/Linux targets.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 83f68aa1-a3a8-48b1-84fa-05a6204218c2 -->
+      <!-- TARGET: *-linux* -->
+      <formalpara>
+        <title><command>gdbserver</command> multi-threaded debugging fix</title>
+        <para>
+          A bug has been fixed that prevented
+          <command>gdbserver</command> from exiting after debugging a
+          multi-threaded program.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 3c3523a6-0012-4c77-a941-64cfd13a499b -->
+      <!-- TARGET: arm*-linux* mips*-linux* -->
+      <formalpara>
+        <title>Multi-threaded debugging fix</title>
+        <para>
+          A GDB bug has been fixed that caused the <command>step</command>
+	  command to hang when debugging a multi-threaded program.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 1b016821-fa2d-47e0-ae4c-cb1c267f031a -->
+      <!-- TARGET: arm*-* -->
+      <formalpara>
+        <title>GDB crash fix</title>
+        <para>
+          A GDB bug has been fixed that caused GDB to crash when
+          unloading shared libraries or switching executables.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 81fb0a02-8bcf-4cec-994f-bd7d6cf47904 -->
+      <!-- TARGET: mips* -->
+      <formalpara>
+        <title>Debugging programs built by Green Hills compilers</title>
+	<para>
+	  GDB has been further extended to accommodate non-standard debug
+	  information produced by some Green Hills toolchains.
+        </para>
+      </formalpara>
+
+      <!-- UUID: b0e43391-3a2b-432b-abcb-bb5c9ead47a8 -->
+      <!-- TARGET: mips*-* -->
+      <formalpara>
+        <title>Debugging programs built by Green Hills compilers</title>
+	<para>
+	  GDB has been extended to accommodate non-standard debug
+	  information produced by some Green Hills toolchains.
+        </para>
+      </formalpara>
+
+      <!-- UUID: bdbb8e34-f0f9-4298-a1d0-162d6ce98d37 -->
+      <!-- TARGET: mips*-linux* -->
+      <formalpara>
+        <title>Floating-point register display bug fix</title>
+        <para>
+          A bug in GDB has been fixed that caused
+          <command>info reg</command> to report <literal>internal-error:
+          mips_read_fp_register_double: bad access to odd-numbered FP
+          register.</literal>
+        </para>
+      </formalpara>
+
+      <!-- UUID: 1e0baf08-6222-44ce-83ae-6eb29eb1ab34 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>Remote debugging hardware watchpoint bug fix</title>
+        <para>
+          A GDB bug has been fixed that caused hardware watchpoint hits
+          to be incorrectly reported in some cases.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 1bf9132e-989b-4f95-ad00-bf2f9f452b26 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB and third-party compilers</title>
+        <para>
+	  Some bugs that caused GDB to crash when debugging programs
+	  compiled with third-party tools have been fixed.  These
+	  bugs did not affect programs built with &csl_sgxx;.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 0e1ae75e-952a-4f85-bca8-683c093377ce -->
+      <!-- TARGET: * -->
+      <formalpara components="python">
+        <title>GDB scripting support</title>
+        <para>
+	  The included version of GDB now supports Python scripting of
+	  GDB operations and the <command>python</command> GDB
+	  command.  The Python interpreter is bundled with &csl_sgxx;.
+	  For more information, see the GDB manual.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 12b8f6b8-a8d7-42c9-bbea-854817581ee5 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB update</title>
+        <para>
+	  The included version of GDB has been updated to
+	  6.8.50.20090630.  This update adds numerous bug fixes and
+	  new features, including support for multi-byte and
+	  wide character sets and improved C++ template support.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 2a8d81ca-2be5-4dae-aac3-6d762e67e335 -->
+      <!-- TARGET: * -->
+      <formalpara>
+	<title>GDB internal warning fix</title>
+	<para>
+	  A GDB bug has been fixed that caused warnings of the form
+	  <literal>warning: (Internal error: pc <replaceable>address
+	  </replaceable> in read in psymtab, but not in symtab.)</literal>.
+	</para>
+      </formalpara>
+
+      <!-- UUID: a5533a88-98dc-46ef-9e9a-3aeeb78cac8d -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>Startup code debugging fixes</title>
+        <para>
+          Two GDB bugs have been fixed that caused errors when
+          debugging startup code.  One bug caused an internal error
+          message; the other caused the error <literal>Cannot find
+          bounds of current function</literal>.
+        </para>
+      </formalpara>
+
+      <!-- UUID: e4b54986-6c61-4eed-a103-65985ce77570 -->
+      <!-- TARGET: sparc-solaris* -->
+      <formalpara>
+        <title>GDB core reading fix</title>
+        <para>
+          A bug has been fixed that caused GDB to wrongly read
+          core dump files generated with <command>gcore</command>
+          command.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 04e75a47-79c7-493f-822b-3664039cfeb8 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB <command>finish</command> internal error</title>
+        <para>
+          A bug has been fixed that caused a GDB internal error when
+	  using the <command>finish</command> command.  The bug occurred
+	  when debugging optimized code.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 1453f678-2cae-48a0-ab3d-ec90beb0c376 -->
+      <!-- TARGET: *-linux* -->
+      <formalpara features="gdbserver">
+        <title><command>gdbserver</command> bug fix</title>
+        <para>
+          A bug has been fixed that caused <command>gdbserver</command>
+          to crash when debugging programs using thread-local storage
+          without other multi-threading features.
+        </para>
+      </formalpara>
+
+      <!-- UUID: b6c1afc9-5e7d-4815-bf63-71b203c31565 -->
+      <!-- TARGET: mips* -->
+      <formalpara>
+        <title>Stack unwinding termination bug fix</title>
+        <para>
+          A bug has been fixed that caused GDB not to detect the outermost
+          frame correctly while doing stack unwinding.  The bug sometimes
+          caused the debugger to go into an infinite loop, or other
+          unpredictable behavior.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 6f56b6e9-5320-4063-b00e-df0b4510992a -->
+      <!-- TARGET: arm* mips* -->
+      <formalpara>
+        <title>GDB backwards compatibility fix</title>
+        <para>
+          A bug has been fixed that caused GDB to crash when loading symbols
+          from binaries built by very old versions of GCC.
+        </para>
+      </formalpara>
+
+      <!-- UUID: b24587e8-783a-4e03-90c8-3aff629ed39a -->
+      <!-- TARGET: fido* -->
+      <formalpara>
+        <title>Accessing read-sensitive registers in the debugger</title>
+        <para>
+          A GDB bug has been fixed that caused read-sensitive attributes on peripheral
+          registers to be ignored.  In particular, this bug caused the &csl_sgxx; IDE
+          to implicitly fetch the values of such registers, as if they were ordinary
+          registers, when using the Registers view.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 03e7c19c-58c6-4282-9db3-c9fb75b1a87d -->
+      <!-- TARGET: *-solaris* -->
+      <formalpara>
+        <title>Thread ID display in GDB</title>
+        <para>
+          A GDB bug has been fixed that caused thread IDs to be displayed
+          incorrectly when debugging core files. 
+        </para>
+      </formalpara>
+
+      <!-- UUID: 7f4b6ac6-169b-4e72-a232-d9d7f62ba986 -->
+      <!-- TARGET: mips*-linux* -->
+      <formalpara>
+        <title>Warnings connecting to <command>gdbserver</command></title>
+        <para>
+          A GDB bug has been fixed that caused warnings of the
+          form <literal>Could not load XML document "mips-dsp.xml"</literal>
+          to appear when connecting to <command>gdbserver</command>
+          from GDB with <command>target remote</command>.
+        </para>
+      </formalpara>
+
+      <!-- UUID: be77d2c0-90da-426a-9628-29ee88d3d82a -->
+      <!-- TARGET: *-linux* -->
+      <formalpara>
+	<title>Errors when inserting breakpoints</title>
+	<para>
+	  A GDB bug has been fixed that caused errors of the form
+	  <literal>
+	    `<replaceable>function</replaceable>' found in
+	    <replaceable>filename</replaceable> psymtab but not in symtab
+	  </literal>
+	  when setting a breakpoint on <replaceable>function</replaceable>.
+	  This error commonly occurred when setting breakpoints on functions
+	  provided by the C library.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 8212acfc-cf01-4117-97bf-d3c66c738fdd -->
+      <!-- TARGET: arm-*-linux-gnueabi -->
+      <formalpara>
+        <title>Support for VFP and Advanced SIMD (NEON) register display</title>
+        <para>
+          The &csl_sgxx; debugger can now display VFP and Advanced
+          SIMD registers when debugging Linux applications with
+	  <command>gdbserver</command>.  This may require a kernel
+	  patch; see <xref linkend="sec-kernel-version"/> for details.
+        </para>
+      </formalpara>
+
+      <!-- UUID: d5d2ce1f-44c2-4056-96f3-66b9e8f71565 -->
+      <!-- TARGET: * -->
+      <formalpara components="eclipse_plugin">
+        <title>Spurious output in IDE application console</title>
+        <para>
+          A bug in GDB has been fixed that caused the &csl_sgxx; IDE
+	  to display internal informational messages in the application
+	  output console.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 58a75bad-b74c-4a24-93cc-75d78f44f503 -->
+      <!-- TARGET: arm-*-linux-gnueabi -->
+      <formalpara>
+        <title>Core files in GDB</title>
+	<para>
+	  A bug in GDB has been fixed that caused incorrect values for
+	  CPSR (the status register) to be displayed when debugging
+	  core files. In some cases, this bug could also cause the
+	  <command>gcore</command> command to crash GDB.
+	</para>
+      </formalpara>
+
+      <!-- UUID: d8ea35db-6747-476e-aec6-0e2da5a49b1a -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB <command>quit</command> error</title>
+	<para>
+	  A bug in GDB has been fixed that
+	  caused <command>quit</command> to report <literal>Quitting:
+	  You can't do that without a process to debug.</literal> when
+	  debugging a core dump file.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 8976efdd-21d5-4a30-afb0-6b2e6a893b26 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>Remote debugging connection auto-retry</title>
+        <para>
+	  The <command>target remote</command> command within GDB now uses
+	  a configurable auto-retry timeout when establishing TCP connections.
+	  This is useful in avoiding race conditions when the remote
+	  GDB stub or GDB server is launched simultaneously with GDB.
+	  The auto-retry behavior is enabled by default; refer to the
+	  GDB manual for details.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 6a0bbaf1-4d96-4a55-b7ac-c560c35fe9b4 -->
+      <!-- TARGET: mips* -->
+      <formalpara>
+	<title>GDB <command>target extended-remote</command> error</title>
+	<para>
+	  A bug in GDB has been fixed that caused <command>target
+	  extended-remote</command> to report <literal>Remote failure
+	  reply: E01</literal> if no remote program was running.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 6fcdd5d8-9993-4f3d-b0c8-397558a13cfa -->
+      <!-- TARGET: powerpc* -->
+      <formalpara features="gdbsimulator">
+        <title><literal>isel</literal> instruction support</title>
+        <para>
+          The GDB simulator now supports the <literal>isel</literal>
+          instruction, present on E500
+          and <trademark class="trade">QorIQ</trademark> processors.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 576566e7-07d8-41d6-a17a-68e1a625a86a -->
+      <!-- TARGET: *-elf *-eabi -->
+      <formalpara>
+        <title>Interrupting the target from the debugger</title>
+        <para>
+          GDB has been improved to be more responsive to attempts to
+          interrupt the target (as by a <keycombo> <keycap
+          function="control">Ctrl</keycap><keycap>C</keycap>
+          </keycombo> when using GDB from the command line) during
+          execution of programs using semihosting.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 9837deba-47ef-4c84-a300-8ac872646e49 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB segment warning</title>
+        <para>
+	  Some compilers produce binaries including uninitialized data
+	  regions, such as the stack and heap.  GDB incorrectly
+	  displayed the warning <literal>Loadable segment
+	  "<replaceable>name</replaceable>" outside of ELF
+	  segments</literal> for such binaries; the warning has now
+	  been fixed.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 0a8e9b7a-c822-415e-94fb-510086ce66a5 -->
+      <!-- TARGET: mips* -->
+      <formalpara hosts="windows">
+	<title>Setting breakpoints on Windows</title>
+	<para>
+	  A bug in GDB on Microsoft Windows hosts has been fixed.  The bug
+	  caused setting breakpoints on a source line by using the file's
+	  full path to fail with <literal>No source file named
+	  <replaceable>filename</replaceable>.</literal>
+	  <phrase components="eclipse_plugin">This bug also
+	  affected clicking on a source line in the &csl_sgxx; IDE.</phrase>
+	</para>
+      </formalpara>
+
+      <!-- UUID: 258b7eb5-b246-4254-b765-eeb4343fdca7 -->
+      <!-- TARGET: mips*-elf* -->
+      <formalpara>
+        <title>GDB support for YAMON</title>
+        <para>
+          GDB now supports debugging via the YAMON boot loader GDB
+          stub.  Consult YAMON documentation for details on enabling
+	  the GDB stub.
+        </para>
+      </formalpara>
+
+      <!-- UUID: f60da902-ee0c-4889-9fbe-830c4786a95a -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB update</title>
+        <para>
+	  The included version of GDB has been updated to
+	  6.8.50.20081022.  This update includes numerous bug fixes.
+        </para>
+      </formalpara>
+
+      <!-- UUID: f5d71fec-2715-4437-9fdb-591b2bf80f9f -->
+      <!-- TARGET: * -->
+      <formalpara>
+	<title>Persistent remote server connections</title>
+	<para>
+	  A GDB bug has been fixed that caused the <command>target
+	  extended-remote</command> command to fail to tell the
+	  remote server to make the connection persistent across
+	  program invocations.
+	</para>
+      </formalpara>
+
+      <!-- UUID: a8626972-bef3-444a-95dc-8f0c788d6625 -->
+      <!-- TARGET: * -->
+      <formalpara components="eclipse_plugin">
+        <title>IDE debugger timeout error</title>
+	<para>
+	  A bug in GDB has been fixed that sometimes caused the IDE to report
+	  a <literal>Target is not responding (timed out)</literal> error while
+	  the program being debugged was running.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 5d438f6a-61d8-4bbd-ab43-466d228933e2 -->
+      <!-- TARGET: i686-mingw32 -->
+      <formalpara components="eclipse_plugin">
+        <title>Native debugging in IDE</title>
+        <para>
+          A bug in GDB has been fixed that affected the Sourcery G++ Native
+          for IA32 Windows debugger in the IDE.  The bug caused the program
+          being debugged to stop at shared library loads before reaching
+          <function>main</function>.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 426d8971-4620-422e-babb-b8760c4f4ca4 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB display of source</title>
+	<para>
+	  A bug has been fixed that prevented GDB from locating debug
+	  information in some cases.  The debugger failed to display
+	  source code for or step into the affected functions.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 58f7d801-a77f-49b6-bf06-a9f1ec666bce -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>Connecting to the target using a pipe</title>
+	<para>
+	  A bug in GDB's
+	  <command>target remote | <replaceable>program</replaceable></command>
+	  command has been fixed.  When launching the specified
+	  <replaceable>program</replaceable> failed, the bug caused
+	  GDB to crash, hang, or give a message
+	  <literal>Error: No Error</literal>.
+	  <phrase features="qemu-system">
+	    Failures in launching the QEMU system emulator could cause
+	    similar problems.
+	  </phrase>
+	  <phrase components="eclipse_plugin">
+	    <phrase components="arm_stub;cfpe_stub;ocdremote">
+	      The bug could also be triggered by failures in launching
+	      the &csl_sgxx; Debug Sprite from the IDE.
+	    </phrase>
+	  </phrase>
+	</para>
+      </formalpara>
+
+      <!-- UUID: ec9a94c0-7b93-4492-a4ff-5da7941509fe -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>Errors after loading the debugged program</title>
+        <para>
+          An intermittent GDB bug has been fixed.  The bug could cause
+	  a GDB internal error
+	  <phrase components="eclipse_plugin">
+	    or an IDE timeout message
+	  </phrase>
+	  after the <command>load</command> command.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 10bbbf31-3060-41c7-b4c7-007379b019f5 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>Printing casted values in GDB</title>
+	<para>
+	  A GDB bug that caused incorrect output for expressions
+	  containing casts, such as in the
+	  <literal>print *(Type *)ptr</literal> command, has been fixed.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 1b3c88ac-0af1-4154-ac99-db61b587a08f -->
+      <!-- TARGET: arm* -->
+      <formalpara>
+        <title>
+	  Improved support for debugging <trademark class="registered">
+	  RealView</trademark> objects
+	</title>
+        <para>
+	  GDB support for programs compiled by the ARM <trademark
+	  class="registered">RealView</trademark> compiler has been
+	  improved.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 59aafaa7-16f5-4ec3-8fcc-611dace8be0d -->
+      <!-- TARGET: * -->
+      <formalpara features="gdbserver">
+        <title>Remote debugging improvements</title>
+        <para>
+	  The <command>gdbserver</command> utility now supports a more
+	  efficient communications protocol that can reduce latency during
+	  remote debugging.  The protocol optimizations are enabled
+	  automatically when <command>gdbserver</command> operates over
+	  a TCP connection.  Refer to the GDB manual for more information.
+        </para>
+      </formalpara>
+
+      <!-- UUID: b90f62ae-cfac-4032-82fd-67d7bb6d334d -->
+      <!-- TARGET: *-solaris* -->
+      <formalpara>
+        <title>GDB <command>gcore</command> bug fix</title>
+        <para>
+          A bug that caused GDB's <command>gcore</command> command to produce core files
+          containing incorrect register information has been fixed.  The problem caused
+          incomplete backtraces when the files were read back into GDB.
+        </para>
+      </formalpara>
+
+      <!-- UUID: b83a2007-4ac6-4b52-acbb-2aa01bafc72d -->
+      <!-- TARGET: * -->
+      <formalpara components="eclipse_plugin">
+        <title>Memory monitor improvements</title>
+	<para>
+  	  The IDE memory monitor functionality has been made more robust in
+	  the case of memory read errors.  If a memory address in the requested
+	  range cannot be read, all the memory until that address is displayed,
+	  and the following memory is marked as unavailable.  Previously,
+	  the monitor failed to display any memory contents if it encountered
+	  a read error.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 2201de7a-e13c-46b3-985b-c05cbad67ec1 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB update</title>
+        <para>
+	  The included version of GDB has been updated to
+	  6.8.50.20080821.  This update adds numerous bug fixes and
+	  new features, including support for decimal floating point,
+	  <phrase target-arch="arm">improved Thumb mode
+	  support,</phrase> the new <command>find</command> command to
+	  search memory, the new <option>/m</option> (mixed
+	  source and assembly) option to the
+	  <command>disassemble</command> command, and the new
+	  <command>macro define</command> command to define C
+	  preprocessor macros interactively.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 6be218fd-12e0-43e9-8ca2-06d8b03e32da -->
+      <!-- TARGET: *-uclinux* -->
+      <formalpara>
+	<title>Memory access errors when setting breakpoints</title>
+        <para>
+	  A GDB bug that caused spurious "Cannot access memory" errors
+	  has been fixed.  The errors occurred when setting
+	  breakpoints after the program being debugged exited or was
+	  killed.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 4a40dbf6-dbdf-42eb-a95e-9b4f9c8c1acf -->
+      <!-- TARGET: *-uclinux* -->
+      <formalpara>
+        <title>Printing global variables in GDB</title>
+        <para>
+	  A GDB bug that caused errors in printing values of global
+	  variables in the debugger has been fixed.  GDB was formerly
+	  computing addresses of such variables incorrectly; in some
+	  cases, this resulted in incorrect values being printed,
+	  while in others, it resulted in memory access errors in the
+	  remote <command>gdbserver</command>.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 0406be78-e7f0-4ace-8ff9-c4e1ceddde6c -->
+      <!-- TARGET: mips64*-linux* mips-wrs-linux-gnu -->
+      <formalpara>
+	<title>Backtracing through signal handlers for MIPS64</title>
+	<para>
+	  GDB now supports backtracing through signal handlers in
+	  applications compiled for the MIPS N32 and N64 ABIs
+	  (<option>-mabi=n32</option> and <option>-mabi=64</option>,
+	  respectively).
+	</para>
+      </formalpara>
+
+      <!-- UUID: bd6178ee-35b3-462c-a57d-90bfad322369 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB <command>info registers</command> crash fix</title>
+        <para>
+          Executing <command>info registers</command> after
+          executing <command>flushregs</command> no longer crashes GDB.
+        </para>
+      </formalpara>
+
+      <!-- UUID: a6e68bd1-6bec-48d6-b850-bbb05e5780d0 -->
+      <!-- TARGET: * -->
+      <formalpara>
+	<title>GDB support for user-defined prefixed commands</title>
+	<para>
+	  The GDB <command>define</command> and
+	  <command>document</command> commands, which allow you to
+	  add new commands to the GDB command-line interface, now
+	  support creating commands within an existing prefix
+	  such as <command>target</command>.  Hooks for prefixed
+	  commands are also supported.  Refer to the Debugger manual
+	  for more information.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 1c006d28-70ba-4814-a15a-7808962904b5 -->
+      <!-- TARGET: i686-mingw32 -->
+      <formalpara>
+	<title>Debugger support for Windows applications</title>
+	<para>
+	  Support for debugging of applications running on Windows targets has been
+	  added to GDB.  The GDB debugger is now included in &csl_prod; for
+	  &csl_target_name;.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 0d0cef39-c2fd-431d-bb5d-2d42cbfe8b1c -->
+      <formalpara hosts="windows">
+        <title>GDB and <keycombo><keycap function="control">Ctrl</keycap>
+	  <keycap>C</keycap></keycombo> on Windows
+	</title>
+        <para>
+	  GDB no longer crashes when you press
+	  <keycombo>
+	    <keycap function="control">Ctrl</keycap>
+	    <keycap>C</keycap>
+	  </keycombo>
+	  twice during remote debugging to give up waiting for the target.
+        </para>
+      </formalpara>
+
+      <!-- UUID: cb742cf6-60f1-4f33-95ce-64e553ab4285 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB search path bug fix</title>
+        <para>
+	  A bug in GDB has been fixed that formerly resulted in an internal
+	  error when setting <varname>solib-search-path</varname> or
+	  <varname>solib-absolute-prefix</varname> after establishing a
+	  connection to a remote target.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 63c34d51-044a-4356-ab4e-52039f775561 -->
+      <!-- TARGET: mips*-linux* -->
+      <formalpara hosts="windows">
+        <title>Program counter and breakpoint bug fix</title>
+        <para>
+	  The MIPS program counter register (<code>$pc</code>) is now
+	  displayed correctly on Microsoft Windows host systems.
+	  Previously, GDB sometimes displayed incorrect values for the
+	  program counter.  This problem also resulted in breakpoints
+          behaving in unexpected ways.
+        </para>
+      </formalpara>
+
+      <!-- UUID: aecd1035-017c-48f6-9475-dfdcd7fff431 -->
+      <!-- TARGET: i686-pc-linux-gnu sparc-solaris2.8 i686-solaris2.10 -->
+      <formalpara>
+	<title>GDB support for execution wrappers</title>
+        <para>
+	  GDB has a new command, <command>set exec-wrapper</command>.  The
+	  specified wrapper can prepare the system and environment for the
+	  new program at <command>run</command>.
+        </para>
+      </formalpara>
+
+      <!-- UUID: e022189f-395e-4751-8979-b22e9ddc1a15 -->
+      <!-- TARGET: *-linux* *-uclinux* -->
+      <formalpara>
+	<title><command>gdbserver</command> support for execution wrappers</title>
+        <para>
+	  <command>gdbserver</command> has a new command-line option,
+	  <option>--wrapper</option>, which specifies a wrapper for any
+	  programs run by <command>gdbserver</command>.  The specified wrapper can
+	  prepare the system and environment for the new program.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 1d8f90d5-79af-4f4f-bc85-b3bb15eceeaa -->
+      <!-- TARGET: *-linux* *-uclinux* -->
+      <formalpara>
+	<title>Multi-process mode for <command>gdbserver</command></title>
+	<para>
+	  The <command>gdbserver</command> utility has a new command-line option,
+	  <option>--multi</option>, that allows you to use it to debug multiple
+	  program instances.  Refer to the Debugger manual for more information.
+	</para>
+      </formalpara>
+
+      <!-- UUID: b7555f98-08dc-44c6-a5e5-046c7fb83fa1 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB update</title>
+        <para>
+	  The included version of GDB has been updated to
+          6.7.20080107.  This update includes numerous bug fixes.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 11fb37b9-7e30-426a-b455-e51011547dbc -->
+      <!-- TARGET: *-solaris* -->
+      <formalpara>
+        <title>Breakpoints in shared libraries used by 64-bit programs</title>
+        <para>
+          Breakpoints in shared libraries now work on 64-bit SPARC Solaris
+          systems.
+        </para>
+      </formalpara>
+
+      <!-- UUID: f11bb90c-8bce-4460-a785-eae973a54b38 -->
+      <!-- TARGET: *-solaris* -->
+      <formalpara>
+        <title>Breakpoints in shared libraries</title>
+        <para>
+          Breakpoints in shared libraries now work.  Such breakpoints are
+          automatically disabled until the shared library is loaded.
+          Previously GDB failed to enable such breakpoints when the
+          shared library was loaded, so the breakpoints would never trigger.
+        </para>
+      </formalpara>
+
+      <!-- UUID: b698d081-bd8a-407c-b1c5-0332ce1817eb -->
+      <!-- TARGET: *-solaris* -->
+      <formalpara>
+        <title>GDB signal handling bug fix</title>
+        <para>
+          A bug in GDB that caused errors when debugging applications
+          using signal handlers has been fixed.  Formerly, GDB was
+          overwriting parts of the <type>siginfo</type> structure when
+          it intercepted signals.
+        </para>
+      </formalpara>
+
+      <!-- UUID: a22d4a8e-ac18-4530-b519-328fbcc1e40c -->
+      <!-- TARGET: *-linux* -->
+      <formalpara>
+	<title>Improved gdbserver thread support</title>
+	<para>
+	  The GNU/Linux remote debug agent,
+	  <command>gdbserver</command>, no longer fails when two
+	  threads call <function>pthread_create</function> at the same
+	  time.  It also supports limited thread debugging when
+	  symbols for <filename>libpthread.so</filename> are not
+	  available.
+	</para>
+      </formalpara>
+
+      <!-- UUID: 35c9cbe7-29ed-441a-aafa-30f02d7d6491 -->
+      <!-- TARGET: m68k-* -->
+      <formalpara>
+        <title>Disassembly of <code>%sr</code> and <code>%ccr</code>
+move instructions</title>
+        <para>
+          Disassembly now correctly handles instructions that
+	  move a constant to the <code>%sr</code> or
+          <code>%ccr</code> registers.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 217122e9-fea8-4b6e-aac5-ab161d60966d -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB <code>qOffsets</code> crash fix</title>
+        <para>
+	  GDB no longer crashes when a remote stub provides load
+	  offsets for an unlinked object file.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 248f12b9-3b39-4131-9715-486f0724141c -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>Improved breakpoints in constructors and template functions</title>
+        <para>
+          GDB now supports breakpoints on source code locations 
+          that have several code addresses associated with them.
+          Setting a breakpoint on a constructor automatically associates
+          the breakpoint with all constructor bodies generated by GCC.  
+          If you set a breakpoint on a line of a templated function, GDB
+          breaks at the indicated line in all instantiations of the
+          templated function. 
+        </para>
+      </formalpara>
+
+      <!-- UUID: 2d0556ed-f50c-4bbb-a0f8-d663e8ae4324 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB update</title>
+        <para>
+          The included version of GDB has been updated to
+          6.6.20070821.  This update includes numerous bug fixes.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 24b42544-e0eb-4f7a-ac6b-ce7e5331277f -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB <command>printf</command> %p</title>
+        <para>
+          GDB's <command>printf</command> command now supports the
+	  <literal>"%p"</literal> format specifier.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 9e46e2a8-1057-4dce-96d7-735386d377db -->
+      <!-- TARGET: powerpc*-* -->
+      <formalpara>
+        <title>ABI markings for Power Architecture binaries</title>
+        <para>
+	  GCC and Binutils now mark Power Architecture binaries
+	  according to their floating point and vector calling
+	  conventions.  The linker reads this information and
+	  warns when mismatched object files are linked together.
+	  For example, the linker warns if <option>-msoft-float</option>
+	  objects are linked to a <option>-mhard-float</option> C library.
+	  GDB uses the same information to correctly call
+	  functions from the command line and display return values
+	  after <command>finish</command>.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 67b0eaa1-dd19-432b-9a25-bca8e31fc45a -->
+      <!-- TARGET: * -->
+      <formalpara hosts="windows">
+        <title>Robustness on Microsoft Windows</title>
+        <para>
+          Defects that sometimes caused GDB to become non-responsive
+          on Microsoft Windows have been eliminated.
+        </para>
+      </formalpara>
+
+      <!-- UUID: a0bf7418-2c89-47b9-b050-a138b628f589 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>Inlined function debugging fix</title>
+        <para>
+	  GDB now backtraces correctly when stopped at the first
+	  instruction of an inlined function.  Earlier versions would
+	  sometimes encounter internal errors in this situation.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 2bce8da4-ed7e-4d4b-b227-984fee527834 -->
+      <!-- TARGET: *-linux* -->
+      <formalpara>
+        <title>Debugging of statically-linked threaded programs</title>
+        <para>
+          GDB and EGLIBC now support thread debugging when using GCC's
+          <option>-static</option> option.  Existing statically-linked
+          programs must be relinked after upgrading EGLIBC for this
+          fix.
+        </para>
+      </formalpara>
+
+      <!-- UUID: deb5a2a5-4558-4121-9ad8-7c876e53049a -->
+      <!-- TARGET: powerpc*-linux* -->
+      <formalpara>
+        <title>Debugger access to AltiVec and SPE registers</title>
+        <para>
+	  GDB can display AltiVec and SPE registers when using gdbserver
+	  on configurations with these auxiliary processors.
+        </para>
+      </formalpara>
+
+      <!-- UUID: d58ce501-d162-4a13-9a8a-9d786bb2e30c -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>Debugging of inlined functions</title>
+        <para>
+	  GDB now supports inlined functions.  GDB can include inlined
+	  functions in the stack trace; display inlined functions' arguments
+	  and local variables; and step into, over, and out of inlined
+	  functions.
+        </para>
+      </formalpara>
+
+      <!-- UUID: e4327b47-4695-440a-8761-592f528e335b -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>Debugger access to out-of-bounds memory</title>
+        <para>
+          GDB turns on <code>inaccessible-by-default</code> by
+          default, disallowing access to memory outside the regions
+          specified in a board configuration.
+        </para>
+      </formalpara>
+
+      <!-- UUID: f82b4f65-28b5-48c0-a2f7-7ffa3cba8eb2 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB update</title>
+        <para>
+          The included version of GDB has been updated to
+          6.6.50.20070620.  This update includes numerous bug fixes.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 9a1d97b1-b7bd-46cf-be3b-c864447994f6 -->
+      <!-- TARGET: m68k-uclinux -->
+      <formalpara>
+        <title>Debugging of signal handlers</title>
+        <para>
+          GDB now correctly handles debugging of invoked signal handlers
+	  and functions called by those handlers on ColdFire targets.
+	  Previously, requesting backtraces through signal handlers could 
+          fail, possibly leading to the failure of the GDB server and
+	  uClinux kernel panics.  
+	  <phrase components="eclipse_plugin">
+	    Single-stepping in the &csl_sgxx; IDE
+	    could cause similar problems.
+	  </phrase>
+        </para>
+      </formalpara>
+
+      <!-- UUID: 50c0cf3d-9086-4394-af0c-1a9591331a68 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>Improved debugging for optimized code</title>
+        <para>
+          GDB's ability to print and change variables' values in
+          optimized code is improved.  GDB now tracks variable scopes
+          more accurately, making better use of the detailed debugging
+          information produced by &csl_sgxx; compilers.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 57722bcb-ff85-42c1-a254-ca3fababd0b5 -->
+      <!-- TARGET: * -->
+      <formalpara hosts="windows">
+        <title>Improved handling of Windows paths in GDB</title>
+        <para>
+          GDB now properly recognizes the names of source files that
+          were passed to the compiler using an absolute path on
+          Windows.  You may refer to the file either by its base
+          name (without any leading directory components), by the
+          exact path passed to the compiler, or by its absolute
+          path.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 4f463a2e-f5b2-4176-8334-db582d8047fd -->
+      <!-- TARGET: arm*-eabi* -->
+      <formalpara>
+        <title>Simulation of <function>lseek</function></title>
+        <para>
+          The ARM simulator no longer sets <varname>errno</varname> to
+          <constant>EBADF</constant> when <function>lseek</function>
+          is applied to file descriptor zero.  Instead, the simulator
+          performs the simulated seek, and accurately reports the
+          result.
+        </para>
+      </formalpara>
+
+      <!-- UUID: 856849f6-a3d6-436f-87c2-57a811991375 -->
+      <!-- TARGET: * -->
+      <formalpara>
+        <title>GDB update</title>
+        <para>
+          The included version of GDB has been updated to
+          6.6.50.20070228.  This update includes numerous bug fixes
+          and improved support for C++ pointers to members.
+        </para>
+      </formalpara>
+
+<!-- Release notes end here.  -->

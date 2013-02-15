@@ -1,0 +1,505 @@
+2010-03-31  Joseph Myers  <joseph@codesourcery.com>
+
+	* include/math.h, include/tgmath.h,
+	libc/sysdeps/linux/alpha/bits/mathdef.h,
+	libc/sysdeps/linux/alpha/bits/wordsize.h,
+	libc/sysdeps/linux/arm/bits/mathdef.h,
+	libc/sysdeps/linux/common/bits/mathdef.h,
+	libc/sysdeps/linux/i386/bits/mathdef.h,
+	libc/sysdeps/linux/ia64/bits/mathdef.h,
+	libc/sysdeps/linux/m68k/bits/mathdef.h,
+	libc/sysdeps/linux/mips/bits/mathdef.h,
+	libc/sysdeps/linux/nios/bits/mathdef.h,
+	libc/sysdeps/linux/nios2/bits/mathdef.h,
+	libc/sysdeps/linux/powerpc/bits/mathdef.h,
+	libc/sysdeps/linux/powerpc/bits/wordsize.h,
+	libc/sysdeps/linux/sh/bits/mathdef.h,
+	libc/sysdeps/linux/sparc/bits/mathdef.h,
+	libc/sysdeps/linux/sparc/bits/mathinline.h,
+	libc/sysdeps/linux/sparc/bits/wordsize.h,
+	libc/sysdeps/linux/x86_64/bits/mathdef.h,
+	libc/sysdeps/linux/xtensa/bits/mathdef.h, libm/ldouble_wrappers.c,
+	libm/nan.c: Backport revision
+	ad8e1035c3feb1650640c2cfc995c1f5f917bbc7 from upstream.
+	* libm/ldouble_wrappers.c: Backport revision
+	5962e391388a20e1886d400c83c36596e4d02f45 from upstream.
+
+2010-03-04  Andrew Stubbs  <ams@codesourcery.com>
+
+	* libc/sysdeps/linux/sh/sys/ptrace.h: New file.
+
+2010-03-03  Andrew Stubbs  <ams@codesourcery.com>
+
+	* ldso/ldso/sh/dl-sysdep.h: Ensure that DL_LOADADDR_TYPE is defined
+	when not using FDPIC.
+
+2010-02-18  Andrew Stubbs  <ams@codesourcery.com>
+
+	* ldso/ldso/sh/dl-inlines.h: New file.
+
+2010-02-18  Andrew Stubbs  <ams@codesourcery.com>
+
+	* Rules.mak: Add -fPIC in FDPIC mode.
+	* include/elf.h (EF_SH_PIC, EF_SH_FDPIC): New defines.
+	(R_SH_GOTFUNCDESC, R_SH_GOTFUNCDESC20, R_SH_GOTOFFFUNCDESC): Likewise.
+	(R_SH_GOTOFFFUNCDESC20, R_SH_FUNCDESC, R_SH_FUNCDESC_VALUE): Likewise.
+	* ldso/include/dl-string.h (CONSTANT_STRING_GOT_FIXUP): Don't define
+	when using FDPIC.
+	* ldso/ldso/dl-elf.c: Include sys/mman.h.
+	(_dl_protect_relro): Don't compile function contents when _dl_mprotect
+	is unsupported.
+	* ldso/ldso/dl-startup.c (DL_START): Use DL_PARSE_DYNAMIC_INFO.
+	* ldso/ldso/ldso.c: Include sys/mman.h.
+	(_dl_get_ready_to_run): Adjust to work with FDPIC.
+	* ldso/ldso/sh/dl-startup.h: Add FDPIC support.
+	* ldso/ldso/sh/dl-syscalls.h (__NR_pread): Define, if undefined.
+	Include endian.h.
+	(__syscall_pread): New syscall definition.
+	(_dl_pread): New function.
+	* ldso/ldso/sh/dl-sysdep.h: Support FDPIC.
+	* ldso/ldso/sh/elfinterp.c (is_in_module): New function.
+	(_dl_linux_resolver): Support FDPIC.
+	(_dl_do_reloc, _dl_do_lazy_reloc): Likewise.
+	Include crtreloc.c, when in FDPIC mode.
+	* ldso/ldso/sh/resolve.S: Support FDPIC.
+	* ldso/libdl/libdl.c: Include sys/mman.h.
+	* libc/misc/elf/dl-iterate-phdr.c (__dl_iterate_phdr): Support FDPIC.
+	(dl_iterate_phdr): Likewise.
+	* libc/sysdeps/linux/sh/crt1.S: Resolve FIXME.
+	* libc/sysdeps/linux/sh/crtreloc.c (BYTE): New define.
+	(unaligned_read, unaligned_write): New functions.
+	(reloc_range_indirect): Use unaligned_read, unaligned_write.
+	* libpthread/linuxthreads/sysdeps/unix/sysv/linux/sh/pt-initfini.c:
+	Use !__SH_FDPIC__ instead of __PIC__.
+
+2009-12-10  Andrew Stubbs  <ams@codesourcery.com>
+
+	* libc/sysdeps/linux/sh/Makefile.arch (FDPIC_CSRC): New variable.
+	(CSRC): Use FDPIC_CSRC instead of crtreloc.c.
+
+2009-11-17  Andrew Stubbs  <ams@codesourcery.com>
+
+	* libpthread/linuxthreads/sysdeps/unix/sysv/linux/sh/pt-initfini.c
+	(_init): _GLOBAL_OFFSET_TABLE_ is for PIC, not FDPIC.
+
+2009-11-16  Andrew Stubbs  <ams@codesourcery.com>
+
+	* libc/sysdeps/linux/sh/clone.S (clone): Add FDPIC support.
+	* libc/sysdeps/linux/sh/setjmp.S (__sigsetjmp_intern): Likewise.
+	* libc/sysdeps/linux/sh/syscall_error.S (__syscall_error): Likewise.
+	* libpthread/linuxthreads/sysdeps/unix/sysv/linux/sh/pt-initfini.c
+	(_init, _fini): Likewise.
+	* libpthread/linuxthreads/sysdeps/unix/sysv/linux/sh/vfork.S
+	(__vfork): Likewise.
+
+2009-11-10  Andrew Stubbs  <ams@codesourcery.com>
+
+	* libc/sysdeps/linux/sh/Makefile.arch (CSRC): Add crtreloc.c.
+	* libc/sysdeps/linux/sh/bits/elf-fdpic.h: Use SH register names in
+	the comment.
+	(__reloc_pointer): Merge updates from FRV elf-fdpic.h.
+	* libc/sysdeps/linux/sh/crt1.S: Implement FDPIC initialization.
+	* libc/sysdeps/linux/sh/crtreloc.c: New file.
+
+2009-10-14  Joseph Myers  <joseph@codesourcery.com>
+
+	Backport from upstream:
+
+	* libc/sysdeps/linux/sh/bits/kernel_types.h: Update include guards
+	for new kernel headers.
+
+2009-10-14  Joseph Myers  <joseph@codesourcery.com>
+
+	* extra/Configs/Config.sh: Don't force HAVE_NO_PIC for
+	CONFIG_SH2A.
+	* libc/misc/elf/dl-iterate-phdr.c (dl_iterate_phdr): Adjust
+	info.dlpi_addr for __SH_FDPIC__.
+
+2009-10-13  Joseph Myers  <joseph@codesourcery.com>
+
+	Merge from FDPIC branch:
+
+	2008-05-22  Daniel Jacobowitz  <dan@codesourcery.com>
+
+	* libc/sysdeps/linux/sh/bits/elf-fdpic.h: New file, copied from
+	Blackfin to allow build.
+
+	2008-04-23  Joseph Myers  <joseph@codesourcery.com>
+
+	* libc/sysdeps/linux/sh/crt1.S: Temporarily disable constants
+	to allow build.
+
+2009-09-15  Daniel Jacobowitz  <dan@codesourcery.com>
+
+	Issue #6538 - System calls clobber "hi" and "lo"
+
+	* libc/sysdeps/linux/mips/bits/syscalls.h (__SYSCALL_CLOBBERS):
+	Include "hi" and "lo".
+
+2009-09-09  Maxim Kuvyrkov  <maxim@codesourcery.com>
+
+	* libc/sysdeps/linux/m68k/sys/ucontext.h (fpregset_t, ucontext_t):
+	Fix bogus layout.
+
+2009-08-19  Andrew Stubbs  <ams@codesourcery.com>
+
+	* libc/string/sh/sh4/memcpy.S (case2b): Fix offsets in big endian
+	code.
+	(case3): Use correct registers in big endian code.
+
+2009-08-17  Maxim Kuvyrkov  <maxim@codesourcery.com>
+
+	Backport from upstream:
+
+commit 82be16427666e8e63af7233345ca949f471acaa6
+Author: Mike Frysinger <vapier@gentoo.org>
+Date:   Mon Jul 20 14:05:44 2009 -0400
+
+    fix building for systems w/out ldso support
+    
+    If an arch (like alpha and others) have no ldso support at all, then there
+    is no point in attempting to walk loaded modules in the dl-* helper funcs.
+    
+    Signed-off-by: Mike Frysinger <vapier@gentoo.org>
+
+2009-08-04  Maxim Kuvyrkov  <maxim@codesourcery.com>
+
+	Don't submit upstream.
+	
+	* libc/sysdeps/linux/m68k/syscall.c (syscall): Fix previous commit.
+
+2009-08-04  Maxim Kuvyrkov  <maxim@codesourcery.com>
+
+	Update m68k syscall macros.  This patch is for local branches only;
+	upstream sources should be prefered during next merge.
+	
+	* libc/sysdeps/linux/m68k/bits/syscalls.h: Update, use macros from
+	GLIBC's sysdep.h
+	* libc/sysdeps/linux/m68k/syscall.c: Simplify.
+
+2009-08-03  Joseph Myers  <joseph@codesourcery.com>
+
+	* libc/unistd/daemon.c: Include <sched.h> in no-MMU case.
+
+2009-07-09  Andrew Stubbs  <ams@codesourcery.com>
+
+	* libc/sysdeps/linux/sh/sys/user.h (PTRACE_GETREGS, PTRACE_SETREGS,
+	PTRACE_GETFPREGS, PTRACE_SETFPREGS, PTRACE_GETFDPIC,
+	PTRACE_GETFDPIC_EXEC, PTRACE_GETFDPIC_INTERP, PTRACE_GETDSPREGS,
+	PTRACE_SETDSPREGS): Undefine.
+
+2009-07-07  Andrew Stubbs  <ams@codesourcery.com>
+
+	* libc/string/sh/sh4/memcpy.S: Fix illegal instruction.
+
+2009-07-01  Joseph Myers  <joseph@codesourcery.com>
+
+	* libc/string/arm/_memcpy.S: Revert local change to register push.
+	* libc/string/arm/memcpy.S: Revert local check for zero length.
+
+2009-06-30  Joseph Myers  <joseph@codesourcery.com>
+
+	* libc/sysdeps/linux/arm/crt1.S: Revert local changes (no longer
+	needed with current binutils).
+
+2009-06-30  Joseph Myers  <joseph@codesourcery.com>
+
+	* release-notes-csl.xml: Add release note for merge from upstream.
+
+2009-06-30  Joseph Myers  <joseph@codesourcery.com>
+
+	Issue #3242
+
+	* include/unistd.h: Remove libc_hidden_proto(fork).
+	* libc/sysdeps/linux/common/fork.c: Uncomment
+	libc_hidden_proto(fork).
+
+2009-06-30  Joseph Myers  <joseph@codesourcery.com>
+
+	* libc/sysdeps/linux/sh/sys/user.h: Revert local changes.
+
+2009-06-30  Joseph Myers  <joseph@codesourcery.com>
+
+	* ldso/ldso/dl-hash.c: Revert local changes (merge error).
+
+2009-06-30  Joseph Myers  <joseph@codesourcery.com>
+
+	* ldso/libdl/Makefile.in: Revert libc-static-$(HAVE_SHARED)
+	setting.
+
+2009-06-30  Joseph Myers  <joseph@codesourcery.com>
+
+	* include/libc-symbols.h, libc/string/arm/memcmp.S,
+	libc/string/arm/memset.S, libc/string/arm/strlen.S,
+	libc/sysdeps/linux/arm/__longjmp.S,
+	libc/sysdeps/linux/arm/bits/uClibc_arch_features.h: Revert
+	ASM_SET_DIRECTIVE changes.
+
+2009-06-30  Joseph Myers  <joseph@codesourcery.com>
+
+	Merge from upstream revision
+	60e244a98fbaa4c8637dd1c3147979633e5179aa.
+	* libc/unistd/daemon.c: Temporarily revert issue 3242 fix.
+
+2009-03-19  Andrew Stubbs  <ams@codesourcery.com>
+
+	* ldso/ldso/sh/dl-startup.h (asm): Set section in order to
+	balance the .previous at the end.
+
+2009-02-24  Andrew Stubbs  <ams@codesourcery.com>
+
+	* libc/sysdeps/linux/sh/sys/procfs.h: Don't include asm/elf.h.
+	* libc/sysdeps/linux/sh/sys/user.h: Don't include asm/user.h.
+	(elf_greg_t, ELF_NGREG, elf_gregset_t, user_fpu_struct,
+	elf_fpregset_t): Copy from kernel headers.
+
+2009-01-19  Joseph Myers  <joseph@codesourcery.com>
+
+	Issue #4475
+	Backport revisions 21916, 21926, 21929, 21931 from upstream:
+	* libc/sysdeps/linux/common/splice.c,
+	libc/sysdeps/linux/common/tee.c,
+	libc/sysdeps/linux/common/vmsplice.c: New.
+	* libc/sysdeps/linux/alpha/bits/fcntl.h,
+	libc/sysdeps/linux/arm/bits/fcntl.h,
+	libc/sysdeps/linux/bfin/bits/fcntl.h,
+	libc/sysdeps/linux/cris/bits/fcntl.h,
+	libc/sysdeps/linux/e1/bits/fcntl.h,
+	libc/sysdeps/linux/frv/bits/fcntl.h,
+	libc/sysdeps/linux/h8300/bits/fcntl.h,
+	libc/sysdeps/linux/hppa/bits/fcntl.h,
+	libc/sysdeps/linux/i386/bits/fcntl.h,
+	libc/sysdeps/linux/i960/bits/fcntl.h,
+	libc/sysdeps/linux/ia64/bits/fcntl.h,
+	libc/sysdeps/linux/m68k/bits/fcntl.h,
+	libc/sysdeps/linux/microblaze/bits/fcntl.h,
+	libc/sysdeps/linux/mips/bits/fcntl.h,
+	libc/sysdeps/linux/nios/bits/fcntl.h,
+	libc/sysdeps/linux/nios2/bits/fcntl.h,
+	libc/sysdeps/linux/powerpc/bits/fcntl.h,
+	libc/sysdeps/linux/sh/bits/fcntl.h,
+	libc/sysdeps/linux/sh64/bits/fcntl.h,
+	libc/sysdeps/linux/sparc/bits/fcntl.h,
+	libc/sysdeps/linux/v850/bits/fcntl.h,
+	libc/sysdeps/linux/vax/bits/fcntl.h,
+	libc/sysdeps/linux/x86_64/bits/fcntl.h: Update.
+
+2008-11-24  Joseph Myers  <joseph@codesourcery.com>
+
+	* libc/sysdeps/linux/arm/crt1.S: Correct pc offset used for
+	Thumb-2.
+
+2008-10-14  Catherine Moore  <clm@codesourcery.com>
+
+	Issue #4025
+	* libc/sysdeps/linux/mips/bits/socket.h (__cmsg_nxthdr):
+	Remove __THROW.
+
+2008-09-16  Paul Brook  <paul@codesourcery.com>
+
+	* libc/sysdeps/linux/arm/setjmp.S (__sigsetjmp): Fix bogus movs.
+
+2008-08-07  Daniel Jacobowitz  <dan@codesourcery.com>
+
+	Support newer kernel headers.
+	* libc/sysdeps/linux/m68k/sys/user.h: New file.
+
+2008-07-25  Nathan Sidwell  <nathan@codesourcery.com>
+
+	Issue #3430
+	* release-notes-csl.xml: Document fix (actual fix is in build
+	scripts). 
+
+2008-06-09  Catherine Moore  <clm@codesourcery.com>
+
+	* libpthread/linuxthreads.old/sysdeps/mips/pt-machine.h (PT_EI):
+	Use __gnu_inline__ attribute if __GNUC_STDC_INLINE__.
+
+2008-06-17  Joseph Myers  <joseph@codesourcery.com>
+
+	* libc/unistd/daemon.c: Remove libc_hidden_proto(fork).
+
+2008-06-05  Joseph Myers  <joseph@codesourcery.com>
+
+	* include/fenv.h: Copy from upstream uClibc trunk.
+
+2008-05-31  Joseph Myers  <joseph@codesourcery.com>
+
+	* libpthread/linuxthreads.old/sysdeps/arm/pt-machine.h (PT_EI):
+	Use __gnu_inline__ attribute if __GNUC_STDC_INLINE__.
+
+2008-04-22  Joseph Myers  <joseph@codesourcery.com>
+
+	* libc/sysdeps/linux/sh/bits/syscalls.h (_syscall6): Use
+	intermediate temporaries to evaluate arguments.
+
+2008-04-02  Mark Shinwell  <shinwell@codesourcery.com>
+	    Daniel Jacobowitz  <dan@codesourcery.com>
+
+	* libpthread/linuxthreads.old/sysdeps/sh/pt-machine.h (PT_EI): Update
+	for GNU inline semantics.
+
+	Merge remaining uClibc changes from 2006q1 branch.
+        * Rules.mak: Don't use -msoft-float for sh-2.
+	* libc/sysdeps/linux/sh/crti.S: Correct typos (#ifndef -> #ifdef).
+        * libc/sysdeps/linux/sh/crt1.S: Force dynamic loader finalization
+        function pointer to NULL if __ARCH_HAS_NO_MMU__ is not set.
+
+2008-03-27  Robin Randhawa  <robin@mips.com>
+	
+	* libc/sysdeps/linux/mips/sys/tas.h,
+	libpthread/linuxthreads/sysdeps/mips/pt-machine.h: Added memory
+	barriers to enforce strict ordering on weakly ordered systems.
+
+2008-03-19  Daniel Jacobowitz  <dan@codesourcery.com>
+
+	* include/elf.h (STO_MIPS_PLT, R_MIPS_GLOB_DAT, R_MIPS_COPY)
+	(R_MIPS_JUMP_SLOT, DT_MIPS_PLTGOT, DT_MIPS_RWPLT): Define.
+	(R_MIPS_NUM, DT_MIPS_NUM): Update.
+	* ldso/ldso/dl-hash.c (_dl_find_hash): Handle STO_MIPS_PLT.
+	* ldso/ldso/mips/resolve.S (_dl_runtime_pltresolve): New.
+	* ldso/ldso/mips/elfinterp.c (_dl_runtime_pltresolve): Declare.
+	(_dl_runtime_pltresolve): New.
+	(_dl_parse_relocation_information): Handle R_MIPS_COPY and
+	R_MIPS_JUMP_SLOT.
+	* ldso/ldso/mips/dl-sysdep.h (ARCH_NUM): Bump to 4.
+	(DT_MIPS_PLTGOT_IDX): Define.
+	(ARCH_DYNAMIC_INFO): Handle DT_MIPS_PLTGOT.
+	(INIT_GOT): Initialize the PLT GOT.
+	(elf_machine_type_class): Update.
+	(DL_NO_COPY_RELOCS): Delete.
+
+2008-02-19  Julian Brown  <julian@codesourcery.com>
+
+	* Rules.mak (TARGET_ARCH=mips): Add CONFIG_MIPS_ISA_MIPS32R2
+	support.
+	* extra/Configs/Config.mips (CONFIG_MIPS_ISA_MIPS32R2): Add.
+
+2008-02-12  Daniel Jacobowitz  <dan@codesourcery.com>
+
+	* ldso/ldso/ldso.c (_dl_get_ready_to_run): Do not call _dl_debug_state
+	before recording ld.so.
+
+2007-10-30  Joseph Myers  <joseph@codesourcery.com>
+
+	* ldso/ldso/ldso.c (_dl_get_ready_to_run): If
+	__FORCE_SHAREABLE_TEXT_SEGMENTS__, give an error for text
+	relocations; otherwise, save and restore ppnt around mprotect
+	loop.
+
+2007-09-20  Joseph Myers  <joseph@codesourcery.com>
+
+	* libc/sysdeps/linux/mips/pipe.S,
+	libc/sysdeps/linux/mips/syscall.S: Backport fixes from uClibc
+	trunk.
+
+2007-09-16  Nathan Sidwell  <nathan@codesourcery.com>
+
+	* ldso/libdl/Makefile.in: Append to libc-static-$(HAVE_SHARED).
+
+2007-09-13  Joseph Myers  <joseph@codesourcery.com>
+
+	* ldso/libdl/Makefile.in: Append to libc-static-y not libc-a-y.
+
+2007-05-23  Joseph Myers  <joseph@codesourcery.com>
+
+	* libc/sysdeps/linux/arm/sigrestorer.S: Update for 2.6.18 signal
+	frame layout.
+
+2007-05-17  Mark Shinwell  <shinwell@codesourcery.com>
+
+	* libc/string/arm/_memcpy.S: Correct and elaborate upon comment.
+	Do not destroy return value in r0.  Bail out early when the
+	length to be copied is zero or the pointers are equal.
+	* libc/string/arm/memcpy.S: Push r2 instead of r0 for
+	consistency.
+	* release-notes-csl.xml (uClibc memcpy and memmove functions): New.
+
+2007-04-26  Mark Shinwell  <shinwell@codesourcery.com>
+
+	* libc/sysdeps/linux/m68k/clone.S: Add DWARF frame information
+	to prevent unwinding beyond the frame corresponding to
+	thread_start.
+	* release-notes-csl.xml: New.
+
+2007-04-24  Kazu Hirata  <kazu@codesourcery.com>
+
+	* libpthread/linuxthreads.old/sysdeps/m68k/pt-machine.h
+	(PT_EI): Use __gnu_inline__ attribute if __GNUC_STDC_INLINE__.
+
+2007-04-17  Joseph Myers  <joseph@codesourcery.com>
+
+	* libpthread/linuxthreads.old/sysdeps/powerpc/pt-machine.h
+	(PT_EI): Use __gnu_inline__ attribute if __GNUC_STDC_INLINE__.
+
+2007-04-10  Joseph Myers  <joseph@codesourcery.com>
+
+	* libc/sysdeps/linux/arm/crt1.S: Use bl not b to call
+	__uClibc_main.
+
+2007-03-28  Paul Brook  <paul@codesourcery.com>
+
+	Merge ARMv6-M support.
+	* libc/sysdeps/linux/arm/bits/arm_asm.h: New file.
+	* include/libc-synbols.h (ASM_SET_DIRECTIVE): Define and use.
+	* ldso/ldso/arm/resolve.S: Add Thumb-2 case.
+	* libc/sysdeps/linux/arm/crti.S: Include arm_asm.h.
+	* libc/sysdeps/linux/arm/crtn.S: Ditto.
+	* libc/string/arm/memcmp.S: Add Thumb code.
+	* libc/string/arm/bzero.S: Ditto.
+	* libc/string/arm/memmove.S: Ditto.
+	* libc/string/arm/strncmp.S: Ditto.
+	* libc/string/arm/strlen.S: Ditto.
+	* libc/string/arm/strcmp.S: Ditto.
+	* libc/string/arm/_memcpy.S: Ditto.
+	* libc/string/arm/memcpy.S: Ditto.
+	* libc/string/arm/memset.S: Ditto.
+	* libc/string/arm/bcopy.S: Ditto.
+	* libc/sysdeps/linux/arm/clone.S: Ditto.
+	* libc/sysdeps/linux/arm/setjmp.S: Ditto.
+	* libc/sysdeps/linux/arm/mmap64.S: Ditto.
+	* libc/sysdeps/linux/arm/bsd-_setjmp.S: Ditto.
+	* libc/sysdeps/linux/arm/crt1.S: Ditto.
+	* libc/sysdeps/linux/arm/vfork.S: Ditto.
+	* libc/sysdeps/linux/arm/bits/uClibc_arch_features.h: Ditto.
+	* libc/sysdeps/linux/arm/__longjmp.S: Ditto.
+	* libc/sysdeps/linux/arm/bsd-setjmp.S: Ditto.
+	* libc/sysdeps/linux/arm/sigrestorer.S: Ditto.
+	* libc/sysdeps/linux/arm/syscall-eabi.S: Ditto.
+
+2007-03-23  Nathan Sidwell  <nathan@codesourcery.com>
+
+	* libc/Makefile.in (lib/libc.gdb): Use new UCLIBC_SHARED_FLAT_ID
+	variable.
+
+2007-03-21  Nathan Sidwell  <nathan@codesourcery.com>
+
+	* include/libc-symbols.h: Disable hidden symbols when building
+	static library.
+
+2007-03-18  Joseph Myers  <joseph@codesourcery.com>
+
+	* libc/sysdeps/linux/powerpc/crt1.S: Set up the small data pointer
+	in r13.
+
+2007-03-11  Nathan Sidwell  <nathan@codesourcery.com>
+
+	* libpthread/linuxthreads.old/wrapsyscall.c: Protect msync
+	definition with __ARCH_USE_MMU_.
+	* libc/sysdeps/linux/common/msync.c: Likewise.
+
+2007-03-10  Joseph Myers  <joseph@codesourcery.com>
+
+	* ldso/libdl/Makefile.in (libc-a-y): Add $(libdl-a-y).
+
+2007-03-10  Nathan Sidwell  <nathan@codesourcery.com>
+
+	* Rules.mak: Fix an indentation.
+	(C_SYSTEM_INCLUDE): New.
+	(CFLAGS): Use it to provide both regular and -fixed include paths.
+	
+^L
+Local Variables:
+mode: change-log
+change-log-default-name: "ChangeLog.csl"
+End:

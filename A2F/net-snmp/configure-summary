@@ -1,0 +1,13 @@
+  SNMP Versions Supported:    1 2c 3
+  Building for:               uclinux
+  Net-SNMP Version:           5.6.1
+  Network transport support:  Callback Unix Alias UDP UDPIPv4Base UDPBase IPv4Base SocketBase
+  SNMPv3 Security Modules:     usm
+  Agent MIB code:             default_modules =>  snmpv3mibs mibII/snmp_mib mibII/system_mib mibII/sysORTable mibII/vacm_vars mibII/vacm_conf util_funcs/Exit util_funcs/restart
+  MYSQL Trap Logging:         unavailable
+  Embedded Perl support:      disabled
+  SNMP Perl modules:          disabled
+  SNMP Python modules:        disabled
+  Crypto support from:        internal
+  Authentication support:     SHA1
+  Encryption support:         disabled

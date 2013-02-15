@@ -1,0 +1,20 @@
+# contents below built automatically by configure; do not edit by hand
+read_config.lo: mibgroup/default_modules.h
+read_config.lo: mibgroup/snmpv3mibs.h
+read_config.lo: mibgroup/mibII/snmp_mib.h
+read_config.lo: mibgroup/mibII/system_mib.h
+read_config.lo: mibgroup/mibII/sysORTable.h
+read_config.lo: mibgroup/mibII/vacm_vars.h
+read_config.lo: mibgroup/mibII/vacm_conf.h
+read_config.lo: mibgroup/util_funcs/Exit.h
+read_config.lo: mibgroup/util_funcs/restart.h
+read_config.lo: mibgroup/snmpv3/snmpMPDStats_5_5.h
+read_config.lo: mibgroup/snmpv3/usmStats_5_5.h
+read_config.lo: mibgroup/snmpv3/snmpEngine.h
+read_config.lo: mibgroup/snmpv3/usmConf.h
+read_config.lo: mibgroup/snmpv3/usmUser.h
+read_config.lo: mibgroup/mibII/updates.h
+read_config.lo: mibgroup/util_funcs.h
+read_config.lo: mibgroup/util_funcs/header_generic.h
+read_config.lo: mibgroup/mibII/vacm_context.h
+read_config.lo: mibgroup/util_funcs/header_simple_table.h
