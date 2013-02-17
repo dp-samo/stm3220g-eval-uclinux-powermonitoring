@@ -208,6 +208,6 @@ module_init(cpumem_usage_init_module);
 module_exit(cpumem_usage_cleanup_module);
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("A. ELLEUCH (DOCEA)");
+MODULE_AUTHOR("A. ELLEUCH (DOCEA POWER)");
 MODULE_DESCRIPTION("Printing usage of CPU/MEM in kernel log");
 

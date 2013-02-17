@@ -243,7 +243,7 @@ static void mmc_dma_rx_start(struct mmci_host *host)
 	u32 dmalen, dmaxferlen;
 
         
-        /* DOCEAPOWER_MAGIC */
+        /* DOCEAPOWER_MONITORING */
         printk("-DMA(read)-\n");
 
 	sg = reqdata->sg;
@@ -289,7 +289,7 @@ static void mmc_dma_tx_start(struct mmci_host *host)
 	char *src_buffer, *dst_buffer;
 	unsigned long flags;
 
-        /* DOCEAPOWER_MAGIC */
+        /* DOCEAPOWER_MONITORING */
         printk("-DMA(write)-\n");
 
 	local_irq_save(flags);
@@ -360,7 +360,7 @@ static void mmc_dma_rx_start(struct mmci_host *host)
 	int dma_len;
 	int rv;
 
-        /* DOCEAPOWER_MAGIC */
+        /* DOCEAPOWER_MONITORING */
         printk("-DMA(read)-\n");
 
 	/* Scatter/gather DMA is not supported */
@@ -449,7 +449,7 @@ static void mmc_dma_tx_start(struct mmci_host *host)
 	int dma_len;
 	int rv;
 
-        /* DOCEAPOWER_MAGIC */
+        /* DOCEAPOWER_MONITORING */
         printk("-DMA(write)-\n");
 
 	/* Scatter/gather DMA is not supported */
@@ -687,7 +687,7 @@ static void mmci_stop_data(struct mmci_host *host)
 	mmci_set_mask1(host, 0);
 	host->data = NULL;
 
-        /* DOCEAPOWER_MAGIC */
+        /* DOCEAPOWER_MONITORING */
         printk("-DMA(TransferCompleted)-\n");
 }
 
@@ -714,7 +714,7 @@ static void mmci_start_data(struct mmci_host *host, struct mmc_data *data)
 	dev_dbg(mmc_dev(host->mmc), "blksz %04x blks %04x flags %08x\n",
 		data->blksz, data->blocks, data->flags);
 
-        /* DOCEAPOWER_MAGIC */
+        /* DOCEAPOWER_MONITORING */
 
         printk("\nblock_size %04u bytes, blocks %04u flags %08x\n",
 		data->blksz, data->blocks, data->flags);

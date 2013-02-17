@@ -5507,7 +5507,7 @@ asmlinkage void __sched schedule(void)
         if ( idle_mode_flag == 1 ) {
 
             idle_mode_flag = 0;
-            /* DOCEAPOWER_MAGIC */
+            /* DOCEAPOWER_MONITORING */
             printk("IdleMode-Quit\n");
         }
 

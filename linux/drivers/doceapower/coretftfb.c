@@ -356,7 +356,7 @@ static void set_standby_mode(unsigned long arg) {
 
     LCD_REG = 0x0007 ; LCD_RAM = 0x0;
 
-    /* DOCEAPOWER_MAGIC */
+    /* DOCEAPOWER_MONITORING */
     printk("LCD-Relax\n");
 }
 
@@ -364,7 +364,7 @@ static void set_attentive_mode() {
 
     LCD_REG = 0x0007 ; LCD_RAM = 0x0173;
     
-    /* DOCEAPOWER_MAGIC */
+    /* DOCEAPOWER_MONITORING */
     printk("LCD-WakeUp\n");
 }
 
