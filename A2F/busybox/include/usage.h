@@ -338,6 +338,22 @@
 #define modinfo_example_usage \
        "$ modinfo -F vermagic loop\n" \
 
+#if ENABLE_MODPROBE_SMALL \
+
+#define modprobe_trivial_usage \
+	"[-qfwrsv] MODULE [symbol=value]..." \
+
+#define modprobe_full_usage "\n\n" \
+       "Options:" \
+     "\n	-r	Remove MODULE (stacks) or do autoclean" \
+     "\n	-q	Quiet" \
+     "\n	-v	Verbose" \
+     "\n	-f	Force" \
+     "\n	-w	Wait for unload" \
+     "\n	-s	Report via syslog instead of stderr" \
+
+#endif /* ENABLE_MODPROBE_SMALL */ \
+
 #if !ENABLE_MODPROBE_SMALL \
 
 #define modprobe_notes_usage \
@@ -420,51 +436,6 @@
 
 #endif /* !ENABLE_MODPROBE_SMALL */ \
 
-#if ENABLE_MODPROBE_SMALL \
-
-#define modprobe_trivial_usage \
-	"[-qfwrsv] MODULE [symbol=value]..." \
-
-#define modprobe_full_usage "\n\n" \
-       "Options:" \
-     "\n	-r	Remove MODULE (stacks) or do autoclean" \
-     "\n	-q	Quiet" \
-     "\n	-v	Verbose" \
-     "\n	-f	Force" \
-     "\n	-w	Wait for unload" \
-     "\n	-s	Report via syslog instead of stderr" \
-
-#endif /* ENABLE_MODPROBE_SMALL */ \
-
-#if ENABLE_NC_110_COMPAT \
-
-#define nc_trivial_usage \
-       "[OPTIONS] HOST PORT  - connect" \
-	IF_NC_SERVER("\n" \
-       "nc [OPTIONS] -l -p PORT [HOST] [PORT]  - listen") \
-
-#define nc_full_usage "\n\n" \
-       "Options:" \
-     "\n	-e PROG	Run PROG after connect (must be last)" \
-	IF_NC_SERVER( \
-     "\n	-l	Listen mode, for inbound connects" \
-	) \
-     "\n	-p PORT	Local port" \
-     "\n	-s ADDR	Local address" \
-     "\n	-w SEC	Timeout for connects and final net reads" \
-	IF_NC_EXTRA( \
-     "\n	-i SEC	Delay interval for lines sent" /* ", ports scanned" */ \
-	) \
-     "\n	-n	Don't do DNS resolution" \
-     "\n	-u	UDP mode" \
-     "\n	-v	Verbose" \
-	IF_NC_EXTRA( \
-     "\n	-o FILE	Hex dump traffic" \
-     "\n	-z	Zero-I/O mode (scanning)" \
-	) \
-
-#endif \
-
 #if !ENABLE_NC_110_COMPAT \
 
 #if ENABLE_NC_SERVER || ENABLE_NC_EXTRA \
@@ -513,6 +484,35 @@
        "214     NOOP QUIT RSET HELP\n" \
        "quit\n" \
        "221 foobar closing connection\n" \
+
+#endif \
+
+#if ENABLE_NC_110_COMPAT \
+
+#define nc_trivial_usage \
+       "[OPTIONS] HOST PORT  - connect" \
+	IF_NC_SERVER("\n" \
+       "nc [OPTIONS] -l -p PORT [HOST] [PORT]  - listen") \
+
+#define nc_full_usage "\n\n" \
+       "Options:" \
+     "\n	-e PROG	Run PROG after connect (must be last)" \
+	IF_NC_SERVER( \
+     "\n	-l	Listen mode, for inbound connects" \
+	) \
+     "\n	-p PORT	Local port" \
+     "\n	-s ADDR	Local address" \
+     "\n	-w SEC	Timeout for connects and final net reads" \
+	IF_NC_EXTRA( \
+     "\n	-i SEC	Delay interval for lines sent" /* ", ports scanned" */ \
+	) \
+     "\n	-n	Don't do DNS resolution" \
+     "\n	-u	UDP mode" \
+     "\n	-v	Verbose" \
+	IF_NC_EXTRA( \
+     "\n	-o FILE	Hex dump traffic" \
+     "\n	-z	Zero-I/O mode (scanning)" \
+	) \
 
 #endif \
 
