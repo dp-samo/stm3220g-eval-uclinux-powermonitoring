@@ -34,7 +34,7 @@ modules.builtin
 /vmlinuz
 /System.map
 /Module.markers
-/Module.symvers
+Module.symvers
 
 linux/tags
 linux/TAGS
@@ -85,3 +85,7 @@ GTAGS
 *.orig
 *~
 \#*#
+
+# Additional rules
+*.uImage
+/tools/
