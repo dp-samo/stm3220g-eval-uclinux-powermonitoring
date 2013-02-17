@@ -37,10 +37,20 @@ modules.builtin
 /Module.markers
 /Module.symvers
 
+linux/tags
+linux/TAGS
+linux/linux
+linux/vmlinux
+linux/vmlinuz
+linux/System.map
+linux/Module.markers
+linux/Module.symvers
+
 #
 # Debian directory (make deb-pkg)
 #
 /debian/
+linux/debian/
 
 #
 # git files that we don't want to ignore even it they are dot-files
@@ -51,10 +61,10 @@ modules.builtin
 #
 # Generated include files
 #
-include/config
-include/linux/version.h
-include/generated
-arch/*/include/generated
+linux/include/config
+linux/include/linux/version.h
+linux/include/generated
+linux/arch/*/include/generated
 
 # stgit generated dirs
 patches-*
