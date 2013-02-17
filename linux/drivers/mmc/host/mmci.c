@@ -244,7 +244,7 @@ static void mmc_dma_rx_start(struct mmci_host *host)
 
         
         /* DOCEAPOWER_MONITORING */
-        printk("-DMA(read)-\n");
+        printk("docea_monitoring sdcard_state dma_read_from_sdcard\n");
 
 	sg = reqdata->sg;
 	len = reqdata->sg_len;
@@ -290,7 +290,7 @@ static void mmc_dma_tx_start(struct mmci_host *host)
 	unsigned long flags;
 
         /* DOCEAPOWER_MONITORING */
-        printk("-DMA(write)-\n");
+        printk("docea_monitoring sdcard_state dma_write_into_sdcard\n");
 
 	local_irq_save(flags);
 
@@ -361,7 +361,7 @@ static void mmc_dma_rx_start(struct mmci_host *host)
 	int rv;
 
         /* DOCEAPOWER_MONITORING */
-        printk("-DMA(read)-\n");
+        printk("docea_monitoring sdcard_state dma_read_from_sdcard\n");
 
 	/* Scatter/gather DMA is not supported */
 	BUG_ON(reqdata->sg_len > 1);
@@ -450,7 +450,7 @@ static void mmc_dma_tx_start(struct mmci_host *host)
 	int rv;
 
         /* DOCEAPOWER_MONITORING */
-        printk("-DMA(write)-\n");
+        printk("docea_monitoring sdcard_state dma_write_into_sdcard\n");
 
 	/* Scatter/gather DMA is not supported */
 	BUG_ON(reqdata->sg_len > 1);
@@ -688,7 +688,7 @@ static void mmci_stop_data(struct mmci_host *host)
 	host->data = NULL;
 
         /* DOCEAPOWER_MONITORING */
-        printk("-DMA(TransferCompleted)-\n");
+        printk("docea_monitoring sdcard_state dma_end_transfer\n");
 }
 
 static void mmci_init_sg(struct mmci_host *host, struct mmc_data *data)
@@ -715,10 +715,8 @@ static void mmci_start_data(struct mmci_host *host, struct mmc_data *data)
 		data->blksz, data->blocks, data->flags);
 
         /* DOCEAPOWER_MONITORING */
-
-        printk("\nblock_size %04u bytes, blocks %04u flags %08x\n",
-		data->blksz, data->blocks, data->flags);
-
+        /* in number of blocks; each block is 512 bytes */
+        printk("docea_monitoring sdcard_activity %04u", data->blocks);
 
 	host->data = data;
 	host->size = data->blksz;

@@ -37,7 +37,7 @@ static inline void arch_idle(void)
         idle_mode_flag = 1;
 
         /* DOCEAPOWER_MONITORING */
-        printk("IdleMode-Enter\n");
+        printk("docea_monitoring cpu_state idle\n");
 
 	cpu_do_idle();
 }

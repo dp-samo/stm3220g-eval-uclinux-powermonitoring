@@ -5508,7 +5508,7 @@ asmlinkage void __sched schedule(void)
 
             idle_mode_flag = 0;
             /* DOCEAPOWER_MONITORING */
-            printk("IdleMode-Quit\n");
+            printk("docea_monitoring cpu_state active\n");
         }
 
 need_resched:
