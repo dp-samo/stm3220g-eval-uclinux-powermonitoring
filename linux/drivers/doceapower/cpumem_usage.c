@@ -103,7 +103,9 @@ static int printing_cpu_usage(void *data) {
 
    cpu_usage = div64_u64(100 * dividend, divisor);
 
-   printk("CPU: %%%llu", cpu_usage);
+   /* DOCEA_MONITORING */
+   /* activity is given in %, it is the ratio between time where the cpu state is other than idle over whole time */
+   printk("doceapower_monitoring cpu_activity_statistic %%%llu\n", cpu_usage);
 
    return 0;
 }

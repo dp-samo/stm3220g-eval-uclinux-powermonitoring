@@ -716,7 +716,7 @@ static void mmci_start_data(struct mmci_host *host, struct mmc_data *data)
 
         /* DOCEAPOWER_MONITORING */
         /* in number of blocks; each block is 512 bytes */
-        printk("docea_monitoring sdcard_activity %04u", data->blocks);
+        printk("docea_monitoring sdcard_activity %04u\n", data->blocks);
 
 	host->data = data;
 	host->size = data->blksz;
